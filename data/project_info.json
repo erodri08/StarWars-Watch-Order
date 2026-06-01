@@ -1,0 +1,19 @@
+{
+  "title": "STAR WARS WATCHLIST MAKER",
+  "subtitle": "USE THIS PROGRAM TO CREATE YOUR IDEAL ORDER FOR A STAR WARS WATCHTHROUGH",
+  "version": "2.0.0",
+  "quality_labels": {
+    "good": "Good",
+    "meh": "Meh",
+    "bad": "Bad"
+  },
+  "vitality_labels": {
+    "vital": "Vital",
+    "skippable": "Skippable"
+  },
+  "type_labels": {
+    "movie": "Movie",
+    "tv": "TV",
+    "game": "Game"
+  }
+}

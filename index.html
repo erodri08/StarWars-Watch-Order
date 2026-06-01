@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAR WARS WATCHLIST MAKER</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars-bg"></div>
+<div class="app-wrapper">
+
+  <div class="header">
+    <h1 id="headerTitle">⬡ STAR WARS WATCHLIST MAKER ⬡</h1>
+    <p id="headerSub">USE THIS PROGRAM TO CREATE YOUR IDEAL ORDER FOR A STAR WARS WATCHTHROUGH</p>
+  </div>
+
+  <div class="nav-tabs" id="navTabs"></div>
+
+  <div id="appContent"></div>
+
+  <!-- Item Edit Modal -->
+  <div class="modal-overlay" id="itemModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('itemModal')">✕</button>
+      <div class="modal-title" id="itemModalTitle">Edit Entry</div>
+      <div id="itemModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Watchthrough Modal -->
+  <div class="modal-overlay" id="wtModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('wtModal')">✕</button>
+      <div class="modal-title">Watchthrough</div>
+      <div id="wtModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Export/Import Modal -->
+  <div class="modal-overlay" id="exportModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('exportModal')">✕</button>
+      <div class="modal-title">Export / Import Data</div>
+      <div id="exportModalBody"></div>
+    </div>
+  </div>
+
+  <div class="save-indicator" id="saveIndicator">SAVED</div>
+
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

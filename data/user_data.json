@@ -1,0 +1,22 @@
+{
+  "custom_order": [],
+  "episode_tags": {},
+  "app_state": {
+    "activeTab": "main",
+    "activeWT": null,
+    "activeCWWT": null,
+    "mainFilters": {
+      "vital": [],
+      "quality": [],
+      "type": [],
+      "order": "chronological",
+      "george": true,
+      "post_george": true
+    },
+    "cwFilters": {
+      "vital": [],
+      "quality": [],
+      "tags": []
+    }
+  }
+}
