@@ -15,14 +15,14 @@
     },
     {
       "id": "tales_jedi_ep1_3",
-      "title": "Tales of the Jedi \u2013 Episodes 1\u20133",
+      "title": "Tales of the Jedi – Episodes 1–3",
       "type": "tv",
       "vitality": "skippable",
       "quality": "good",
       "release_year": 2022,
       "is_post_george_lucas": true,
       "chronological_order": 2,
-      "timeline_position": "68\u201332 BBY",
+      "timeline_position": "68–32 BBY",
       "timeline_sort_key": -68,
       "notes": ""
     },
@@ -41,7 +41,7 @@
     },
     {
       "id": "tales_jedi_ep4",
-      "title": "Tales of the Jedi \u2013 Episode 4",
+      "title": "Tales of the Jedi – Episode 4",
       "type": "tv",
       "vitality": "skippable",
       "quality": "good",
@@ -87,9 +87,9 @@
       "release_year": 2008,
       "is_post_george_lucas": false,
       "chronological_order": 7,
-      "timeline_position": "22\u201319 BBY",
+      "timeline_position": "22–19 BBY",
       "timeline_sort_key": -19.5,
-      "notes": "Seasons 1\u20136 & S7 Ep1\u20138"
+      "notes": "Seasons 1–6 & S7 Ep1–8"
     },
     {
       "id": "revenge_sith_2005",
@@ -106,7 +106,7 @@
     },
     {
       "id": "clone_wars_s7ep9_12",
-      "title": "The Clone Wars (Series) \u2013 Season 7 Episodes 9\u201312",
+      "title": "The Clone Wars (Series) – Season 7 Episodes 9–12",
       "type": "tv",
       "vitality": "vital",
       "quality": "good",
@@ -126,13 +126,13 @@
       "release_year": 2021,
       "is_post_george_lucas": true,
       "chronological_order": 10,
-      "timeline_position": "19\u201318 BBY",
+      "timeline_position": "19–18 BBY",
       "timeline_sort_key": -18,
       "notes": ""
     },
     {
       "id": "tales_jedi_ep5_6",
-      "title": "Tales of the Jedi \u2013 Episodes 5\u20136",
+      "title": "Tales of the Jedi – Episodes 5–6",
       "type": "tv",
       "vitality": "skippable",
       "quality": "good",
@@ -158,7 +158,7 @@
     },
     {
       "id": "maul_shadow_lord_2026",
-      "title": "Maul \u2013 Shadow Lord",
+      "title": "Maul – Shadow Lord",
       "type": "tv",
       "vitality": "vital",
       "quality": "good",
@@ -217,7 +217,7 @@
       "release_year": 2014,
       "is_post_george_lucas": true,
       "chronological_order": 17,
-      "timeline_position": "5\u20131 BBY",
+      "timeline_position": "5–1 BBY",
       "timeline_sort_key": -5,
       "notes": ""
     },
@@ -288,7 +288,7 @@
     },
     {
       "id": "mandalorian_s1_2_2019",
-      "title": "The Mandalorian \u2013 Seasons 1\u20132",
+      "title": "The Mandalorian – Seasons 1–2",
       "type": "tv",
       "vitality": "vital",
       "quality": "good",
@@ -314,7 +314,7 @@
     },
     {
       "id": "mandalorian_s3_2023",
-      "title": "The Mandalorian \u2013 Season 3",
+      "title": "The Mandalorian – Season 3",
       "type": "tv",
       "vitality": "skippable",
       "quality": "meh",
@@ -418,7 +418,7 @@
     },
     {
       "id": "tales_empire_2024",
-      "title": "Tales of the Empire \u2013 Episode 1",
+      "title": "Tales of the Empire – Episode 1",
       "type": "tv",
       "vitality": "skippable",
       "quality": "meh",
@@ -438,13 +438,13 @@
       "release_year": 2025,
       "is_post_george_lucas": true,
       "chronological_order": 101,
-      "timeline_position": "62 \u2010 33 BBY",
+      "timeline_position": "62 ‐ 33 BBY",
       "timeline_sort_key": -33,
       "notes": ""
     },
     {
-      "title": "Tales of the Empire \u2013 Episode 4",
-      "release_year": 2026,
+      "title": "Tales of the Empire – Episode 4",
+      "release_year": 2025,
       "timeline_position": "19 BBY",
       "timeline_sort_key": -19,
       "type": "tv",
@@ -457,7 +457,7 @@
     },
     {
       "title": "Tales of the Underworld - Episodes 1-3",
-      "release_year": 2026,
+      "release_year": 2025,
       "timeline_position": "18 BBY",
       "timeline_sort_key": -18.5,
       "type": "tv",
@@ -469,7 +469,7 @@
       "chronological_order": 103
     },
     {
-      "title": "Tales of the Empire \u2013 Episode 5",
+      "title": "Tales of the Empire – Episode 5",
       "release_year": 2024,
       "timeline_position": "18 BBY",
       "timeline_sort_key": -18,
@@ -482,7 +482,7 @@
       "chronological_order": 104
     },
     {
-      "title": "Tales of the Empire \u2013 Episode 2 & 6",
+      "title": "Tales of the Empire – Episode 2 & 6",
       "release_year": 2024,
       "timeline_position": "9 BBY",
       "timeline_sort_key": -9.5,
@@ -495,9 +495,9 @@
       "chronological_order": 105
     },
     {
-      "title": "Tales of the Empire \u2013 Episode 3",
+      "title": "Tales of the Empire – Episode 3",
       "release_year": 2025,
-      "timeline_position": "9.5 ABY",
+      "timeline_position": "9 ABY",
       "timeline_sort_key": 9,
       "type": "tv",
       "vitality": "skippable",
