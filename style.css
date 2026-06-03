@@ -327,6 +327,20 @@ body {
 .modal-close:hover { color: var(--sw-text); }
 .modal-actions { display: flex; gap: 8px; margin-top: 1.2rem; flex-wrap: wrap; }
 
+.export-divider {
+  border: none;
+  border-top: 1px solid var(--sw-border);
+  margin: 1.5rem 0 1rem;
+}
+.export-section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--sw-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
 /* ── FORMS ────────────────────────────────────────────────────────────────── */
 .form-group { margin-bottom: 1rem; }
 .form-label { font-size: 11px; letter-spacing: 1px; color: var(--sw-muted); display: block; margin-bottom: 5px; text-transform: uppercase; font-family: 'Orbitron', monospace; }

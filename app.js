@@ -918,8 +918,43 @@ function openExportModal() {
       <button class="btn" onclick="closeModal('exportModal')">Close</button>
     </div>
     <p id="exportMsg" style="color:#81C784;font-size:12px;margin-top:8px;display:none;">Copied!</p>
+
+    <div class="export-divider"></div>
+    <div class="export-section-title">↓ Download Content JSONs</div>
+    <p style="color:var(--sw-muted);font-size:12px;margin-bottom:0.75rem;line-height:1.5;">
+      Downloads your current in-app content as JSON files, including any edits you've made to titles,
+      vitality, quality, or notes. Replace the files in <code>data/</code> and re-run
+      <code>generate_data.py</code> to update <code>data.js</code>.
+    </p>
+    <div class="modal-actions">
+      <button class="btn" onclick="downloadContentJSON()">↓ starwars_content.json</button>
+      <button class="btn" onclick="downloadCWJSON()">↓ clone_wars_episodes.json</button>
+    </div>
   `;
   document.getElementById('exportModal').classList.add('open');
+}
+
+// Download current APP.items + APP.releaseOrder as starwars_content.json
+function downloadContentJSON() {
+  // Reconstruct release_order from APP.releaseOrder (preserves original order,
+  // appended items go at end — matches how generate_data.py expects it)
+  const data = {
+    items: APP.items,
+    release_order: APP.releaseOrder,
+  };
+  downloadTxt(JSON.stringify(data, null, 2), 'starwars_content.json');
+}
+
+// Download current APP.cwEpisodes merged with cwEpisodeTags as clone_wars_episodes.json
+function downloadCWJSON() {
+  // Merge tags back into the episode objects so the JSON is self-contained
+  const episodes = APP.cwEpisodes.map(ep => {
+    const tags = APP.cwEpisodeTags[String(ep.chron_num)];
+    if (tags && tags.length > 0) return { ...ep, tags };
+    const { tags: _removed, ...rest } = ep; // drop stale tags key if present
+    return rest;
+  });
+  downloadTxt(JSON.stringify({ episodes }, null, 2), 'clone_wars_episodes.json');
 }
 
 function copyExport() {
