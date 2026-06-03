@@ -271,13 +271,15 @@ function renderWatchthroughBar(wtList, activeId, onChangeFn, onNewFn, onDeleteFn
   `;
 }
 
-function renderFilterPanel(title, items, activeArr, onToggleFn) {
+// onToggleFn: plain global function name string, e.g. "toggleFilter"
+// category: the filter category string passed as first arg, e.g. "vital"
+function renderFilterPanel(title, items, activeArr, onToggleFn, category) {
   return `
     <div class="panel" style="flex:1; min-width:180px;">
       <div class="panel-title">${title}</div>
       <div class="filter-chips">
         ${items.map(([val, label, cls]) =>
-          `<button class="chip ${activeArr.includes(val) ? cls : ''}" onclick="${onToggleFn}('${val}')">${label}</button>`
+          `<button class="chip ${activeArr.includes(val) ? cls : ''}" onclick="${onToggleFn}('${category}','${val}')">${label}</button>`
         ).join('')}
       </div>
     </div>
@@ -315,11 +317,11 @@ function renderMain() {
           ).join('')}
         </div>
       </div>
-      ${renderFilterPanel('Vital / Skippable', vitalOpts, APP.mainFilters.vital, "v => toggleFilter('vital',v)")}
-      ${renderFilterPanel('Type', typeOpts, APP.mainFilters.type, "v => toggleFilter('type',v)")}
+      ${renderFilterPanel('Vital / Skippable', vitalOpts, APP.mainFilters.vital, 'toggleFilter', 'vital')}
+      ${renderFilterPanel('Type', typeOpts, APP.mainFilters.type, 'toggleFilter', 'type')}
     </div>
     <div class="section-row" style="gap:1rem; align-items:stretch;">
-      ${renderFilterPanel('Quality', qualOpts, APP.mainFilters.quality, "v => toggleFilter('quality',v)")}
+      ${renderFilterPanel('Quality', qualOpts, APP.mainFilters.quality, 'toggleFilter', 'quality')}
       <div class="panel" style="flex:1; min-width:220px;">
         <div class="panel-title">Era</div>
         <div class="filter-chips">
@@ -400,8 +402,8 @@ function renderCW() {
 
   let html = `
     <div class="section-row" style="gap:1rem; align-items:stretch;">
-      ${renderFilterPanel('Vital / Skippable', vitalOpts, APP.cwFilters.vital, "v => toggleCWFilter('vital',v)")}
-      ${renderFilterPanel('Quality', qualOpts, APP.cwFilters.quality, "v => toggleCWFilter('quality',v)")}
+      ${renderFilterPanel('Vital / Skippable', vitalOpts, APP.cwFilters.vital, 'toggleCWFilter', 'vital')}
+      ${renderFilterPanel('Quality', qualOpts, APP.cwFilters.quality, 'toggleCWFilter', 'quality')}
       ${allTags.length ? `
       <div class="panel" style="flex:2; min-width:220px;">
         <div class="panel-title">Tags</div>
@@ -420,39 +422,30 @@ function renderCW() {
     <span style="font-family:'Orbitron',monospace;font-size:10px;color:var(--sw-muted);">Chronological Order — ${eps.length} episodes</span>
   </div>`;
 
-  html += `
-    <div class="cw-header-row">
-      <span style="width:16px;">#</span>
-      <span style="width:22px;">CHR</span>
-      <span style="width:40px;">EP</span>
-      <span style="flex:1;">TITLE</span>
-      <span style="width:80px;text-align:center;">BADGES</span>
-    </div>
-    <div class="items-list">
-  `;
+  html += `<div class="items-list">`;
 
   if (eps.length === 0) html += `<div class="empty-state">No episodes match current filters</div>`;
 
   eps.forEach((ep, listIdx) => {
     const w = isCWWatched(ep.chron_num);
     const vBadge = ep.vitality === 'vital'
-      ? `<span class="badge badge-vital">V</span>`
+      ? `<span class="badge badge-vital">Vital</span>`
       : ep.vitality === 'skippable'
-        ? `<span class="badge badge-skip">S</span>`
-        : `<span class="badge" style="color:var(--sw-muted);">?</span>`;
+        ? `<span class="badge badge-skip">Skip</span>`
+        : '';
     const qBadge = ep.quality
-      ? `<span class="badge badge-${ep.quality}">${ep.quality[0].toUpperCase()}</span>`
-      : `<span class="badge" style="color:var(--sw-muted);">?</span>`;
+      ? `<span class="badge badge-${ep.quality}">${ep.quality}</span>`
+      : '';
+    const epBadge = `<span class="badge badge-ep">${formatAirCode(ep.air_code)}</span>`;
     const epTags  = APP.cwEpisodeTags[String(ep.chron_num)] || [];
     const tagHtml = epTags.map(t => `<span class="badge badge-tag">${t}</span>`).join('');
 
     html += `
-      <div class="cw-ep-row ${w?'watched':''}" onclick="toggleCWWatched('${ep.chron_num}')">
+      <div class="item-row ${w?'watched':''}" onclick="toggleCWWatched('${ep.chron_num}')">
         <div class="item-check ${w?'checked':''}">${w?'✓':''}</div>
-        <span class="cw-air">${listIdx+1}</span>
-        <span class="cw-ep-num">${formatAirCode(ep.air_code)}</span>
-        <span class="cw-title ${w?'watched-title':''}">${ep.title}${tagHtml ? ' '+tagHtml : ''}</span>
-        <div class="cw-badges">${vBadge}${qBadge}</div>
+        <div class="item-num">${listIdx+1}</div>
+        <div class="item-badges">${vBadge}${epBadge}${qBadge}</div>
+        <div class="item-title ${w?'watched-title':''}">${ep.title}${tagHtml ? ' '+tagHtml : ''}</div>
         <button class="item-edit-btn" onclick="event.stopPropagation();openEditCWEpModal('${ep.chron_num}')">Edit</button>
       </div>
     `;

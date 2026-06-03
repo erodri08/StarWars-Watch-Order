@@ -290,35 +290,8 @@ body {
 .badge-tv     { background: rgba(106,27,154,0.2);  color: #CE93D8;        border: 1px solid rgba(106,27,154,0.4); }
 .badge-game   { background: rgba(46,125,50,0.2);   color: #81C784;        border: 1px solid rgba(46,125,50,0.4); }
 .badge-tag    { background: rgba(130,100,220,0.2); color: #C9B8FF;        border: 1px solid rgba(130,100,220,0.4); font-size: 10px; }
+.badge-ep     { background: rgba(21,101,192,0.15); color: #64B4FF;        border: 1px solid rgba(21,101,192,0.35); }
 
-/* ── CLONE WARS ROWS ──────────────────────────────────────────────────────── */
-.cw-header-row {
-  display: flex;
-  gap: 8px;
-  padding: 4px 10px;
-  margin-bottom: 4px;
-  font-family: 'Orbitron', monospace;
-  font-size: 10px;
-  color: var(--sw-muted);
-  letter-spacing: 1px;
-}
-
-.cw-ep-row {
-  display: flex; align-items: center; gap: 8px;
-  padding: 6px 10px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  transition: all 0.15s;
-  cursor: pointer;
-}
-.cw-ep-row:hover { background: var(--sw-panel); border-color: var(--sw-border2); }
-.cw-ep-row.watched { background: rgba(255,215,0,0.03); }
-
-.cw-air    { font-family: 'Orbitron', monospace; font-size: 11px; color: var(--sw-muted); width: 22px; text-align: right; flex-shrink: 0; }
-.cw-ep-num { font-family: 'Orbitron', monospace; font-size: 11px; color: #64B4FF; width: 40px; flex-shrink: 0; }
-.cw-title  { flex: 1; font-size: 17px; color: var(--sw-text); }
-.cw-title.watched-title { color: var(--sw-muted); text-decoration: line-through; }
-.cw-badges { display: flex; gap: 4px; flex-shrink: 0; }
 
 /* ── MODALS ───────────────────────────────────────────────────────────────── */
 .modal-overlay {
