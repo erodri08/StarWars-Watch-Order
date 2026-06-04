@@ -276,6 +276,22 @@ function syncCustomOrder() {
   allIds.forEach(id => { if (!APP.customOrder.includes(id)) APP.customOrder.push(id); });
 }
 
+// Seed the custom order from chronological or release order as a starting base.
+// Warns the user since it will overwrite their existing arrangement.
+function seedCustomOrder(basis) {
+  const label = basis === 'release' ? 'release date' : 'chronological';
+  if (!confirm(`Reset your custom order to ${label} order? This will overwrite your current arrangement.`)) return;
+  const allItems = [...APP.items];
+  if (basis === 'release') {
+    allItems.sort((a, b) => releaseSortKey(a) - releaseSortKey(b));
+  } else {
+    allItems.sort((a, b) => a.timeline_sort_key - b.timeline_sort_key || a.chronological_order - b.chronological_order);
+  }
+  APP.customOrder = allItems.map(i => i.id);
+  APP.selectedIds = new Set();
+  saveAll(); render();
+}
+
 // ── RENDER ────────────────────────────────────────────────────────────────────
 function render() {
   renderNav();
@@ -407,7 +423,14 @@ function renderMain() {
   </div>`;
 
   if (isCustom) {
-    html += `<div class="custom-order-hint">⠿ DRAG TO REORDER — OR SELECT MULTIPLE ROWS AND USE ▲ ▼ BUTTONS</div>`;
+    html += `
+      <div class="custom-order-hint">
+        <span>⠿ DRAG TO REORDER — OR SELECT MULTIPLE ROWS AND USE ▲ ▼ BUTTONS</span>
+        <span class="hint-seed-label">RESET TO:</span>
+        <button class="btn hint-seed-btn" onclick="seedCustomOrder('chronological')">Chronological</button>
+        <button class="btn hint-seed-btn" onclick="seedCustomOrder('release')">Release</button>
+      </div>
+    `;
   }
 
   html += `<div class="items-list" id="mainItemsList">`;

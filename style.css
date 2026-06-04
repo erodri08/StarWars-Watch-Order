@@ -441,6 +441,10 @@ body {
 }
 
 .custom-order-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
   font-family: 'Orbitron', monospace;
   font-size: 9px;
   color: var(--sw-muted);
@@ -449,7 +453,17 @@ body {
   margin-bottom: 8px;
   border: 1px dashed rgba(255,215,0,0.15);
   border-radius: 3px;
-  text-align: center;
+}
+.hint-seed-label {
+  margin-left: auto;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--sw-muted);
+}
+.hint-seed-btn {
+  font-size: 9px;
+  padding: 3px 10px;
+  letter-spacing: 1px;
 }
 
 .save-indicator {
