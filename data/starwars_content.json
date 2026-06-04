@@ -16,16 +16,16 @@
     },
     {
       "id": "tales_jedi_ep1_3",
-      "title": "Tales of the Jedi – Episodes 1–3",
+      "title": "Tales of the Jedi – Episode 1",
       "type": "tv",
       "vitality": "skippable",
-      "quality": "good",
+      "quality": "meh",
       "release_date": "2022-10-26",
       "release_year": 2022,
       "is_post_george_lucas": true,
       "chronological_order": 2,
-      "timeline_position": "68–32 BBY",
-      "timeline_sort_key": -68,
+      "timeline_position": "36 BBY",
+      "timeline_sort_key": -36,
       "notes": ""
     },
     {
@@ -741,6 +741,34 @@
       "notes": "",
       "id": "id_1780589313933_3o0sz",
       "chronological_order": 121
+    },
+    {
+      "title": "Tales of The Jedi - Episode 2",
+      "release_date": "2022-10-26",
+      "release_year": 2022,
+      "timeline_position": "58 BBY",
+      "timeline_sort_key": -58,
+      "type": "tv",
+      "vitality": "vital",
+      "quality": "good",
+      "is_post_george_lucas": true,
+      "notes": "",
+      "id": "id_1780608978725_iitl8",
+      "chronological_order": 122
+    },
+    {
+      "title": "Tales of The Jedi - Episode 3",
+      "release_year": 2022,
+      "timeline_position": "48 BBY",
+      "timeline_sort_key": -48,
+      "type": "tv",
+      "vitality": "vital",
+      "quality": "good",
+      "is_post_george_lucas": true,
+      "notes": "",
+      "id": "id_1780609210536_p2rqt",
+      "chronological_order": 123,
+      "release_date": "2022-10-26"
     }
   ],
   "release_order": [
@@ -776,6 +804,7 @@
     "tales_jedi_ep1_3",
     "tales_jedi_ep4",
     "tales_jedi_ep5_6",
+    "id_1780608978725_iitl8",
     "id_1780581682120_issbx",
     "jedi_survivor_2023",
     "mandalorian_s3_2023",
@@ -795,6 +824,7 @@
     "id_1780524529710_73cd9",
     "id_1780582877277_bbfbg",
     "id_1780583077268_cghho",
+    "id_1780609210536_p2rqt",
     "maul_shadow_lord_2026",
     "mando_grogu_2026"
   ]
