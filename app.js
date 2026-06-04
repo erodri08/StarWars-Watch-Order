@@ -468,7 +468,6 @@ function renderItemRow(item, num, watched, draggable, isHidden) {
     ? item.release_date
     : (item.release_year ? String(item.release_year) : '');
   const itemTags  = APP.mainItemTags[item.id] || [];
-  const tagHtml   = itemTags.map(t => `<span class="badge badge-tag">${t}</span>`).join('');
 
   const hideBtn = !isHidden
     ? `<button class="item-hide-btn" title="Hide from watchthrough" onclick="event.stopPropagation(); toggleHidden('${item.id}')">Hide</button>`
@@ -483,7 +482,7 @@ function renderItemRow(item, num, watched, draggable, isHidden) {
       <div class="item-check ${watched&&!isHidden?'checked':''}">${watched&&!isHidden?'✓':''}</div>
       <div class="item-num">${num}</div>
       <div class="item-badges">${vBadge}${tBadge}${qBadge}</div>
-      <div class="item-title ${watched&&!isHidden?'watched-title':''}">${item.title}${glTag}${noteStr}${tagHtml ? ' '+tagHtml : ''}</div>
+      <div class="item-title ${watched&&!isHidden?'watched-title':''}">${item.title}${glTag}${noteStr}</div>
       <div class="item-year">${dateStr}</div>
       <div class="item-set">${item.timeline_position||''}</div>
       ${hideBtn}
@@ -847,6 +846,14 @@ function buildItemForm(item) {
         <input class="form-input" id="ef_tagInput" placeholder="e.g. skywalker, dark-side, mandalore" onkeydown="mainTagKeydown(event)" />
         <button class="btn" onclick="addMainTag()">Add</button>
       </div>
+      ${(() => {
+        const existing = getAllMainTags().filter(t => !itemTags.includes(t));
+        return existing.length ? `
+          <div class="tag-existing-label">Existing tags — click to add:</div>
+          <div class="tag-existing-pool" id="mainTagPool">
+            ${existing.map(t => `<button class="tag-existing-pill" onclick="addMainTagDirect('${escHtml(t)}')">${escHtml(t)}</button>`).join('')}
+          </div>` : '<div class="tag-existing-pool" id="mainTagPool" style="display:none"></div>';
+      })()}
       <div class="tags-display" id="mainTagsDisplay">
         ${itemTags.map(t => `
           <span class="tag-pill">${escHtml(t)}
@@ -927,6 +934,14 @@ function addMainTag() {
   refreshMainTagsDisplay();
 }
 
+// Add a tag directly from the existing-tags pool (no input needed)
+function addMainTagDirect(tag) {
+  if (!APP.editingItemId) return;
+  const tags = APP.mainItemTags[APP.editingItemId] || [];
+  if (!tags.includes(tag)) APP.mainItemTags[APP.editingItemId] = [...tags, tag];
+  refreshMainTagsDisplay();
+}
+
 function removeMainTag(tag) {
   if (!APP.editingItemId) return;
   APP.mainItemTags[APP.editingItemId] = (APP.mainItemTags[APP.editingItemId] || []).filter(t => t !== tag);
@@ -935,10 +950,24 @@ function removeMainTag(tag) {
 
 function refreshMainTagsDisplay() {
   const tags = APP.mainItemTags[APP.editingItemId] || [];
+  // Refresh applied tags
   document.getElementById('mainTagsDisplay').innerHTML = tags.map(t => `
     <span class="tag-pill">${escHtml(t)}
       <span class="tag-pill-remove" onclick="removeMainTag('${escHtml(t)}')">✕</span>
     </span>`).join('');
+  // Refresh existing pool — hide tags already applied
+  const pool = document.getElementById('mainTagPool');
+  if (pool) {
+    const available = getAllMainTags().filter(t => !tags.includes(t));
+    if (available.length) {
+      pool.style.display = '';
+      pool.innerHTML = available.map(t =>
+        `<button class="tag-existing-pill" onclick="addMainTagDirect('${escHtml(t)}')">${escHtml(t)}</button>`
+      ).join('');
+    } else {
+      pool.style.display = 'none';
+    }
+  }
 }
 
 // ── CW EPISODE EDIT MODAL ─────────────────────────────────────────────────────
