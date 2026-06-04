@@ -7,6 +7,7 @@ const KEYS = {
   WATCHTHROUGHS: 'sw_watchthroughs',
   USER_DATA:     'sw_user_data',
   CW_TAGS:       'sw_cw_tags',
+  MAIN_TAGS:     'sw_main_tags',
   CUSTOM_ORDER:  'sw_custom_order',
   HIDDEN_IDS:    'sw_hidden_ids',
 };
@@ -22,13 +23,14 @@ let APP = {
   cwWatchthroughs: [],
   customOrder: [],
   cwEpisodeTags: {},
-  hiddenIds: new Set(),   // items hidden from main watchthrough list
+  mainItemTags: {},   // tags for main list items, keyed by item id
+  hiddenIds: new Set(),
 
   activeTab: 'main',
   activeWT: null,
   activeCWWT: null,
   mainFilters: {
-    vital: [], quality: [], type: [],
+    vital: [], quality: [], type: [], tags: [],
     order: 'chronological',
     george: true, post_george: true,
   },
@@ -85,6 +87,11 @@ function loadPersisted() {
   } catch(e) {}
 
   try {
+    const mt = localStorage.getItem(KEYS.MAIN_TAGS);
+    if (mt) APP.mainItemTags = JSON.parse(mt);
+  } catch(e) {}
+
+  try {
     const hidden = localStorage.getItem(KEYS.HIDDEN_IDS);
     if (hidden) APP.hiddenIds = new Set(JSON.parse(hidden));
   } catch(e) {}
@@ -106,6 +113,7 @@ function saveUserData() {
   }));
   localStorage.setItem(KEYS.CUSTOM_ORDER, JSON.stringify(APP.customOrder));
   localStorage.setItem(KEYS.CW_TAGS, JSON.stringify(APP.cwEpisodeTags));
+  localStorage.setItem(KEYS.MAIN_TAGS, JSON.stringify(APP.mainItemTags));
   localStorage.setItem(KEYS.HIDDEN_IDS, JSON.stringify([...APP.hiddenIds]));
 }
 
@@ -215,10 +223,16 @@ function getFilteredItems(includeHidden = false) {
   if (f.vital.length) {
     items = items.filter(i =>
       (f.vital.includes('vital') && i.vitality === 'vital') ||
-      (f.vital.includes('skippable') && i.vitality === 'skippable')
+      (f.vital.includes('non-essential') && i.vitality === 'skippable')
     );
   }
   if (f.quality.length) items = items.filter(i => f.quality.includes(i.quality));
+  if (f.tags.length) {
+    items = items.filter(i => {
+      const iTags = APP.mainItemTags[i.id] || [];
+      return f.tags.every(t => iTags.includes(t));
+    });
+  }
 
   return items;
 }
@@ -230,7 +244,7 @@ function getFilteredCWEps() {
   if (f.vital.length) {
     eps = eps.filter(e =>
       (f.vital.includes('vital') && e.vitality === 'vital') ||
-      (f.vital.includes('skippable') && e.vitality === 'skippable')
+      (f.vital.includes('non-essential') && e.vitality === 'skippable')
     );
   }
   if (f.quality.length) eps = eps.filter(e => f.quality.includes(e.quality));
@@ -246,6 +260,12 @@ function getFilteredCWEps() {
 function getAllCWTags() {
   const tagSet = new Set();
   Object.values(APP.cwEpisodeTags).forEach(tags => tags.forEach(t => tagSet.add(t)));
+  return [...tagSet].sort();
+}
+
+function getAllMainTags() {
+  const tagSet = new Set();
+  Object.values(APP.mainItemTags).forEach(tags => tags.forEach(t => tagSet.add(t)));
   return [...tagSet].sort();
 }
 
@@ -330,9 +350,10 @@ function renderMain() {
   const isCustom = APP.mainFilters.order === 'custom';
   const sel      = APP.selectedIds;
 
-  const vitalOpts = [['vital','Vital','active-vital'],['skippable','Skippable','active-skippable']];
+  const vitalOpts = [['vital','Vital','active-vital'],['non-essential','Non-Essential','active-skippable']];
   const typeOpts  = [['movie','Movie','active-movie'],['tv','TV','active-tv'],['game','Game','active-game']];
-  const qualOpts  = [['good','Good','active-good'],['meh','Meh','active-meh'],['bad','Bad','active-bad']];
+  const qualOpts  = [['great','Great','active-great'],['good','Good','active-good'],['meh','Meh','active-meh'],['bad','Bad','active-bad']];
+  const allMainTags = getAllMainTags();
 
   let html = `
     <div class="section-row" style="gap:1rem; align-items:stretch;">
@@ -344,7 +365,7 @@ function renderMain() {
           ).join('')}
         </div>
       </div>
-      ${renderFilterPanel('Vital / Skippable', vitalOpts, APP.mainFilters.vital, 'toggleFilter', 'vital')}
+      ${renderFilterPanel('Vitality', vitalOpts, APP.mainFilters.vital, 'toggleFilter', 'vital')}
       ${renderFilterPanel('Type', typeOpts, APP.mainFilters.type, 'toggleFilter', 'type')}
     </div>
     <div class="section-row" style="gap:1rem; align-items:stretch;">
@@ -356,6 +377,13 @@ function renderMain() {
           <button class="chip ${APP.mainFilters.post_george?'active-post':''}" onclick="toggleEra('post_george')">${APP.mainFilters.post_george?'Post-George ✓':'Post-George'}</button>
         </div>
       </div>
+      ${allMainTags.length ? `
+      <div class="panel" style="flex:2; min-width:220px;">
+        <div class="panel-title">Tags</div>
+        <div class="filter-chips">
+          ${allMainTags.map(t => `<button class="chip ${APP.mainFilters.tags.includes(t)?'active-tag':''}" onclick="toggleFilter('tags','${t}')">${t}</button>`).join('')}
+        </div>
+      </div>` : ''}
     </div>
   `;
 
@@ -408,7 +436,7 @@ function renderMain() {
 
 function renderItemRow(item, num, watched, draggable, isHidden) {
   const sel = APP.selectedIds.has(item.id);
-  const vBadge  = `<span class="badge badge-${item.vitality==='vital'?'vital':'skip'}">${item.vitality==='vital'?'Vital':'Skip'}</span>`;
+  const vBadge  = `<span class="badge badge-${item.vitality==='vital'?'vital':'skip'}">${item.vitality==='vital'?'Vital':'Non-Ess.'}</span>`;
   const qBadge  = item.quality ? `<span class="badge badge-${item.quality}">${item.quality}</span>` : '';
   const tBadge  = `<span class="badge badge-${item.type}">${item.type}</span>`;
   const glTag   = !item.is_post_george_lucas ? '<span class="gl-tag" title="George Lucas era">GL</span>' : '';
@@ -416,6 +444,8 @@ function renderItemRow(item, num, watched, draggable, isHidden) {
   const dateStr = item.release_date
     ? item.release_date
     : (item.release_year ? String(item.release_year) : '');
+  const itemTags  = APP.mainItemTags[item.id] || [];
+  const tagHtml   = itemTags.map(t => `<span class="badge badge-tag">${t}</span>`).join('');
 
   const hideBtn = !isHidden
     ? `<button class="item-hide-btn" title="Hide from watchthrough" onclick="event.stopPropagation(); toggleHidden('${item.id}')">Hide</button>`
@@ -430,7 +460,7 @@ function renderItemRow(item, num, watched, draggable, isHidden) {
       <div class="item-check ${watched&&!isHidden?'checked':''}">${watched&&!isHidden?'✓':''}</div>
       <div class="item-num">${num}</div>
       <div class="item-badges">${vBadge}${tBadge}${qBadge}</div>
-      <div class="item-title ${watched&&!isHidden?'watched-title':''}">${item.title}${glTag}${noteStr}</div>
+      <div class="item-title ${watched&&!isHidden?'watched-title':''}">${item.title}${glTag}${noteStr}${tagHtml ? ' '+tagHtml : ''}</div>
       <div class="item-year">${dateStr}</div>
       <div class="item-set">${item.timeline_position||''}</div>
       ${hideBtn}
@@ -445,8 +475,8 @@ function renderCW() {
   const cwwt    = getActiveCWWTObj();
   const allTags = getAllCWTags();
 
-  const vitalOpts = [['vital','Vital','active-vital'],['skippable','Skippable','active-skippable']];
-  const qualOpts  = [['good','Good','active-good'],['meh','Meh','active-meh'],['bad','Bad','active-bad']];
+  const vitalOpts = [['vital','Vital','active-vital'],['non-essential','Non-Essential','active-skippable']];
+  const qualOpts  = [['great','Great','active-great'],['good','Good','active-good'],['meh','Meh','active-meh'],['bad','Bad','active-bad']];
 
   let html = `
     <div class="section-row" style="gap:1rem; align-items:stretch;">
@@ -480,7 +510,7 @@ function renderCW() {
     const vBadge  = ep.vitality === 'vital'
       ? `<span class="badge badge-vital">Vital</span>`
       : ep.vitality === 'skippable'
-        ? `<span class="badge badge-skip">Skip</span>`
+        ? `<span class="badge badge-skip">Non-Ess.</span>`
         : '';
     const qBadge  = ep.quality ? `<span class="badge badge-${ep.quality}">${ep.quality}</span>` : '';
     const epTags  = APP.cwEpisodeTags[String(ep.chron_num)] || [];
@@ -714,7 +744,7 @@ function handleItemClick(event, itemId) {
 
 // ── ITEM EDIT MODALS ──────────────────────────────────────────────────────────
 function openAddItemModal() {
-  APP.editingItemId = null;
+  APP.editingItemId = generateId();  // pre-generate so tags can be attached immediately
   document.getElementById('itemModalTitle').textContent = 'Add New Entry';
   document.getElementById('itemModalBody').innerHTML = buildItemForm(null);
   document.getElementById('itemModal').classList.add('open');
@@ -730,6 +760,7 @@ function openEditItemModal(id) {
 
 function buildItemForm(item) {
   const sel = (val, match) => val === match ? 'selected' : '';
+  const itemTags = APP.mainItemTags[item?.id] || [];
   return `
     <div class="form-group">
       <label class="form-label">Title</label>
@@ -763,16 +794,17 @@ function buildItemForm(item) {
       <label class="form-label">Vitality</label>
       <select class="form-select" id="ef_vital">
         <option value="vital"     ${sel(item?.vitality,'vital')}>Vital</option>
-        <option value="skippable" ${sel(item?.vitality,'skippable')}>Skippable</option>
+        <option value="skippable" ${sel(item?.vitality,'skippable')}>Non-Essential</option>
       </select>
     </div>
     <div class="form-group">
       <label class="form-label">Quality</label>
       <select class="form-select" id="ef_quality">
-        <option value=""     ${!item?.quality?'selected':''}>Unknown</option>
-        <option value="good" ${sel(item?.quality,'good')}>Good</option>
-        <option value="meh"  ${sel(item?.quality,'meh')}>Meh</option>
-        <option value="bad"  ${sel(item?.quality,'bad')}>Bad</option>
+        <option value=""      ${!item?.quality?'selected':''}>Unknown</option>
+        <option value="great" ${sel(item?.quality,'great')}>Great</option>
+        <option value="good"  ${sel(item?.quality,'good')}>Good</option>
+        <option value="meh"   ${sel(item?.quality,'meh')}>Meh</option>
+        <option value="bad"   ${sel(item?.quality,'bad')}>Bad</option>
       </select>
     </div>
     <div class="form-group">
@@ -785,6 +817,19 @@ function buildItemForm(item) {
     <div class="form-group">
       <label class="form-label">Notes</label>
       <input class="form-input" id="ef_notes" value="${item ? escHtml(item.notes||'') : ''}" placeholder="Optional notes" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tags</label>
+      <div class="tag-input-row">
+        <input class="form-input" id="ef_tagInput" placeholder="e.g. skywalker, dark-side, mandalore" onkeydown="mainTagKeydown(event)" />
+        <button class="btn" onclick="addMainTag()">Add</button>
+      </div>
+      <div class="tags-display" id="mainTagsDisplay">
+        ${itemTags.map(t => `
+          <span class="tag-pill">${escHtml(t)}
+            <span class="tag-pill-remove" onclick="removeMainTag('${escHtml(t)}')">✕</span>
+          </span>`).join('')}
+      </div>
     </div>
     <div class="modal-actions">
       <button class="btn primary" onclick="saveItem()">Save</button>
@@ -800,29 +845,30 @@ function saveItem() {
   const dateVal = document.getElementById('ef_date').value.trim();
   const data = {
     title,
-    release_date:       dateVal || undefined,
-    release_year:       parseInt(document.getElementById('ef_year').value) || new Date().getFullYear(),
-    timeline_position:  document.getElementById('ef_setIn').value.trim(),
-    timeline_sort_key:  parseFloat(document.getElementById('ef_setSort').value) || 0,
-    type:               document.getElementById('ef_type').value,
-    vitality:           document.getElementById('ef_vital').value,
-    quality:            document.getElementById('ef_quality').value || null,
+    release_date:         dateVal || undefined,
+    release_year:         parseInt(document.getElementById('ef_year').value) || new Date().getFullYear(),
+    timeline_position:    document.getElementById('ef_setIn').value.trim(),
+    timeline_sort_key:    parseFloat(document.getElementById('ef_setSort').value) || 0,
+    type:                 document.getElementById('ef_type').value,
+    vitality:             document.getElementById('ef_vital').value,
+    quality:              document.getElementById('ef_quality').value || null,
     is_post_george_lucas: document.getElementById('ef_postLucas').value === 'true',
-    notes:              document.getElementById('ef_notes').value.trim(),
+    notes:                document.getElementById('ef_notes').value.trim(),
   };
   if (!data.release_date) delete data.release_date;
 
-  if (APP.editingItemId) {
-    const item = APP.items.find(i => i.id === APP.editingItemId);
-    if (item) Object.assign(item, data);
+  const existingItem = APP.items.find(i => i.id === APP.editingItemId);
+  if (existingItem) {
+    // Editing existing item
+    Object.assign(existingItem, data);
   } else {
+    // Adding new item — reuse the pre-generated id so tags are already attached
     const newItem = {
       ...data,
-      id: generateId(),
+      id: APP.editingItemId,
       chronological_order: Math.max(...APP.items.map(i => i.chronological_order || 0), 0) + 1,
     };
     APP.items.push(newItem);
-    // Insert into release_order in correct date-sorted position
     const newKey = releaseSortKey(newItem);
     const insertIdx = APP.releaseOrder.findIndex(id => {
       const existing = APP.items.find(i => i.id === id);
@@ -841,7 +887,35 @@ function deleteItem(id) {
   APP.releaseOrder = APP.releaseOrder.filter(i => i !== id);
   APP.customOrder  = APP.customOrder.filter(i => i !== id);
   APP.hiddenIds.delete(id);
+  delete APP.mainItemTags[id];
   saveAll(); closeModal('itemModal'); render();
+}
+
+// ── MAIN ITEM TAG FUNCTIONS ───────────────────────────────────────────────────
+function mainTagKeydown(e) { if (e.key === 'Enter') { e.preventDefault(); addMainTag(); } }
+
+function addMainTag() {
+  const input = document.getElementById('ef_tagInput');
+  const val   = input.value.trim().toLowerCase().replace(/\s+/g, '-');
+  if (!val || !APP.editingItemId) return;
+  const tags = APP.mainItemTags[APP.editingItemId] || [];
+  if (!tags.includes(val)) APP.mainItemTags[APP.editingItemId] = [...tags, val];
+  input.value = '';
+  refreshMainTagsDisplay();
+}
+
+function removeMainTag(tag) {
+  if (!APP.editingItemId) return;
+  APP.mainItemTags[APP.editingItemId] = (APP.mainItemTags[APP.editingItemId] || []).filter(t => t !== tag);
+  refreshMainTagsDisplay();
+}
+
+function refreshMainTagsDisplay() {
+  const tags = APP.mainItemTags[APP.editingItemId] || [];
+  document.getElementById('mainTagsDisplay').innerHTML = tags.map(t => `
+    <span class="tag-pill">${escHtml(t)}
+      <span class="tag-pill-remove" onclick="removeMainTag('${escHtml(t)}')">✕</span>
+    </span>`).join('');
 }
 
 // ── CW EPISODE EDIT MODAL ─────────────────────────────────────────────────────
@@ -876,10 +950,11 @@ function buildCWEpForm(ep, epTags) {
     <div class="form-group">
       <label class="form-label">Quality</label>
       <select class="form-select" id="cwef_quality">
-        <option value=""     ${!ep.quality?'selected':''}>Unknown</option>
-        <option value="good" ${sel(ep.quality,'good')}>Good</option>
-        <option value="meh"  ${sel(ep.quality,'meh')}>Meh</option>
-        <option value="bad"  ${sel(ep.quality,'bad')}>Bad</option>
+        <option value=""      ${!ep.quality?'selected':''}>Unknown</option>
+        <option value="great" ${sel(ep.quality,'great')}>Great</option>
+        <option value="good"  ${sel(ep.quality,'good')}>Good</option>
+        <option value="meh"   ${sel(ep.quality,'meh')}>Meh</option>
+        <option value="bad"   ${sel(ep.quality,'bad')}>Bad</option>
       </select>
     </div>
     <div class="form-group">
@@ -945,12 +1020,13 @@ function saveCWEp() {
 // ── EXPORT / IMPORT ───────────────────────────────────────────────────────────
 function openExportModal() {
   const exportData = JSON.stringify({
-    version: 4,
+    version: 5,
     exported: new Date().toISOString(),
     watchthroughs: APP.watchthroughs,
     cwWatchthroughs: APP.cwWatchthroughs,
     customOrder: APP.customOrder,
     cwEpisodeTags: APP.cwEpisodeTags,
+    mainItemTags: APP.mainItemTags,
     hiddenIds: [...APP.hiddenIds],
     appState: {
       activeWT: APP.activeWT, activeCWWT: APP.activeCWWT,
@@ -1001,6 +1077,7 @@ function importData() {
     if (data.cwWatchthroughs) APP.cwWatchthroughs  = data.cwWatchthroughs;
     if (data.customOrder)     APP.customOrder      = data.customOrder;
     if (data.cwEpisodeTags)   APP.cwEpisodeTags    = data.cwEpisodeTags;
+    if (data.mainItemTags)    APP.mainItemTags     = data.mainItemTags;
     if (data.hiddenIds)       APP.hiddenIds        = new Set(data.hiddenIds);
     if (data.appState) {
       if (data.appState.activeWT   !== undefined) APP.activeWT   = data.appState.activeWT;
