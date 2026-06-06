@@ -2,7 +2,7 @@
 // Star Wars Watchlist Maker — app.js
 // ─────────────────────────────────────────────────────────────────────────────
 
-// ── STORAGE KEYS ─────────────────────────────────────────────────────────────
+// STORAGE KEYS 
 const KEYS = {
   WATCHTHROUGHS: 'sw_watchthroughs',
   USER_DATA:     'sw_user_data',
@@ -11,7 +11,7 @@ const KEYS = {
   HIDDEN_IDS:    'sw_hidden_ids',
 };
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
+// STATE 
 let APP = {
   projectInfo: {},
   items: [],
@@ -34,7 +34,7 @@ let APP = {
   mainTagsExpanded: false,
 };
 
-// ── DATA LOAD ─────────────────────────────────────────────────────────────────
+// DATA LOAD
 async function loadJSONFiles() {
   try {
     APP.projectInfo  = PROJECT_INFO;
@@ -45,7 +45,7 @@ async function loadJSONFiles() {
   }
 }
 
-// ── PERSIST ───────────────────────────────────────────────────────────────────
+// PERSIST 
 function loadPersisted() {
   try {
     const wt = localStorage.getItem(KEYS.WATCHTHROUGHS);
@@ -110,7 +110,7 @@ function showSaveFlash() {
   setTimeout(() => el.classList.remove('show'), 1400);
 }
 
-// ── HELPERS ───────────────────────────────────────────────────────────────────
+// HELPERS
 function generateId() { return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7); }
 
 function getActiveWTObj() { return APP.watchthroughs.find(w => w.id === APP.activeWT) || null; }
@@ -156,17 +156,16 @@ function releaseSortKey(item) {
   return (item.release_year || 9999) * 10000;
 }
 
-// ── HIDE FROM WATCHTHROUGH ────────────────────────────────────────────────────
+// HIDE FROM WATCHTHROUGH
 function toggleHidden(itemId) {
   if (APP.hiddenIds.has(itemId)) APP.hiddenIds.delete(itemId);
   else APP.hiddenIds.add(itemId);
   saveAll(); render();
 }
 
-// ── FILTERING ─────────────────────────────────────────────────────────────────
+// FILTERING
 function getFilteredItems(includeHidden = false) {
   const f = APP.mainFilters;
-  // When includeHidden is false, exclude hidden items from the main list
   let items = APP.items.filter(i => includeHidden ? APP.hiddenIds.has(i.id) : !APP.hiddenIds.has(i.id));
 
   if (f.order === 'release') {
@@ -210,15 +209,13 @@ function getAllMainTags() {
   return [...tagSet].sort();
 }
 
-// ── CUSTOM ORDER SYNC ─────────────────────────────────────────────────────────
+// CUSTOM ORDER SYNC
 function syncCustomOrder() {
   const allIds = APP.items.map(i => i.id);
   APP.customOrder = APP.customOrder.filter(id => allIds.includes(id));
   allIds.forEach(id => { if (!APP.customOrder.includes(id)) APP.customOrder.push(id); });
 }
 
-// Seed the custom order from chronological or release order as a starting base.
-// Warns the user since it will overwrite their existing arrangement.
 function seedCustomOrder(basis) {
   const label = basis === 'release' ? 'release date' : 'chronological';
   if (!confirm(`Reset your custom order to ${label} order? This will overwrite your current arrangement.`)) return;
@@ -233,7 +230,7 @@ function seedCustomOrder(basis) {
   saveAll(); render();
 }
 
-// ── RENDER ────────────────────────────────────────────────────────────────────
+// RENDER
 const NAV_PAGES = [
   {href:'index.html',      label:'◈ Main List',       color: null},
   {href:'cw.html',         label:'◈ Clone Wars',      color:'#64B4FF'},
@@ -262,7 +259,7 @@ function renderNav() {
     `<button class="btn" style="margin-left:auto" onclick="openExportModal()">⇅ Export / Import</button>`;
 }
 
-// ── SHARED UI PARTIALS ────────────────────────────────────────────────────────
+// SHARED UI PARTIALS 
 function renderWatchthroughBar(wtList, activeId, onChangeFn, onNewFn, onDeleteFn, onExportFn) {
   const hasActive = !!activeId;
   return `
@@ -303,10 +300,10 @@ function renderProgressBar(watched, total, color = 'var(--sw-gold)') {
   `;
 }
 
-// ── MAIN LIST RENDER ──────────────────────────────────────────────────────────
+// MAIN LIST RENDER
 function renderMain() {
   const items    = getFilteredItems(false);
-  const hidden   = getFilteredItems(true);  // hidden items (apply same filters)
+  const hidden   = getFilteredItems(true);
   const wt       = getActiveWTObj();
   const isCustom = APP.mainFilters.order === 'custom';
   const sel      = APP.selectedIds;
@@ -386,7 +383,7 @@ function renderMain() {
   items.forEach((item, idx) => html += renderItemRow(item, idx+1, isWatched(item.id), isCustom, false));
   html += `</div>`;
 
-  // ── Hidden section ────────────────────────────────────────────────────────
+  // Hidden section
   if (APP.hiddenIds.size > 0) {
     const hiddenFiltered = APP.items.filter(i => APP.hiddenIds.has(i.id));
     html += `
@@ -439,8 +436,7 @@ function renderItemRow(item, num, watched, draggable, isHidden) {
   `;
 }
 
-// ── CLONE WARS RENDER ─────────────────────────────────────────────────────────
-// ── DRAG AND DROP (Custom Order) ──────────────────────────────────────────────
+// DRAG AND DROP (Custom Order) 
 function initDragDrop() {
   const list = document.getElementById('mainItemsList');
   if (!list) return;
@@ -493,7 +489,7 @@ function updateCustomOrderFromVisible(visibleIds) {
   APP.customOrder = result;
 }
 
-// ── MULTI-SELECT (Custom Order) ───────────────────────────────────────────────
+// MULTI-SELECT (Custom Order)
 function toggleSelectItem(itemId) {
   if (APP.selectedIds.has(itemId)) APP.selectedIds.delete(itemId);
   else APP.selectedIds.add(itemId);
@@ -537,7 +533,7 @@ function moveSelectedDown() {
   saveAll(); render();
 }
 
-// ── FILTER ACTIONS ────────────────────────────────────────────────────────────
+// FILTER ACTIONS
 function toggleFilter(category, value) {
   const arr = APP.mainFilters[category];
   const idx = arr.indexOf(value);
@@ -562,7 +558,7 @@ function toggleMainTags() {
   render();
 }
 
-// ── WATCHTHROUGH ACTIONS ──────────────────────────────────────────────────────
+// WATCHTHROUGH ACTIONS 
 function selectWT(id) { APP.activeWT = id || null; saveAll(); render(); }
 
 function openNewWTModal() { showWTModal('New Watchthrough', 'e.g. First Watch 2024', 'createWT'); }
@@ -598,7 +594,7 @@ function deleteWT() {
   saveAll(); render();
 }
 
-// ── EXPORT WATCHLIST AS TXT ───────────────────────────────────────────────────
+// EXPORT WATCHLIST AS TXT 
 function exportWatchlistTxt() {
   const items = getFilteredItems(false);
   downloadTxt(items.map(i => i.title).join('\n'), 'watchlist.txt');
@@ -613,7 +609,7 @@ function downloadTxt(content, filename) {
   document.body.removeChild(a); URL.revokeObjectURL(url);
 }
 
-// ── ITEM CLICK HANDLER ────────────────────────────────────────────────────────
+// ITEM CLICK HANDLER
 function handleItemClick(event, itemId) {
   if (event.target.classList.contains('drag-handle')) return;
   if (event.target.classList.contains('item-edit-btn')) return;
@@ -627,9 +623,9 @@ function handleItemClick(event, itemId) {
   toggleWatched(itemId);
 }
 
-// ── ITEM EDIT MODALS ──────────────────────────────────────────────────────────
+// ITEM EDIT MODALS
 function openAddItemModal() {
-  APP.editingItemId = generateId();  // pre-generate so tags can be attached immediately
+  APP.editingItemId = generateId();  
   document.getElementById('itemModalTitle').textContent = 'Add New Entry';
   document.getElementById('itemModalBody').innerHTML = buildItemForm(null);
   document.getElementById('itemModal').classList.add('open');
@@ -755,7 +751,6 @@ function saveItem() {
     // Editing existing item
     Object.assign(existingItem, data);
   } else {
-    // Adding new item — reuse the pre-generated id so tags are already attached
     const newItem = {
       ...data,
       id: APP.editingItemId,
@@ -784,7 +779,7 @@ function deleteItem(id) {
   saveAll(); closeModal('itemModal'); render();
 }
 
-// ── MAIN ITEM TAG FUNCTIONS ───────────────────────────────────────────────────
+// MAIN ITEM TAG FUNCTIONS 
 function mainTagKeydown(e) { if (e.key === 'Enter') { e.preventDefault(); addMainTag(); } }
 
 function addMainTag() {
@@ -797,7 +792,7 @@ function addMainTag() {
   refreshMainTagsDisplay();
 }
 
-// Add a tag directly from the existing-tags pool (no input needed)
+// Add a tag directly from the existing-tags pool 
 function addMainTagDirect(tag) {
   if (!APP.editingItemId) return;
   const tags = APP.mainItemTags[APP.editingItemId] || [];
@@ -833,7 +828,7 @@ function refreshMainTagsDisplay() {
   }
 }
 
-// ── EXPORT / IMPORT ───────────────────────────────────────────────────────────
+// EXPORT / IMPORT
 function openExportModal() {
   const exportData = JSON.stringify({
     version: 6,
@@ -905,10 +900,10 @@ function downloadContentJSON() {
   downloadTxt(JSON.stringify({ items: APP.items, release_order: APP.releaseOrder }, null, 2), 'starwars_content.json');
 }
 
-// ── MODAL UTILS ───────────────────────────────────────────────────────────────
+// MODAL UTILS
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
+// INIT
 async function init() {
   await loadJSONFiles();
   loadPersisted();
