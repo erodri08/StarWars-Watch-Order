@@ -1,52 +1,88 @@
 # Star Wars Watchlist Maker
 
-A html app to create a watch order for all star wars content
+A HTML site that allows users to create and track a custom watch order for all Star Wars content.
 
 ## Access
 
-- open `(https://erodri08.github.io/StarWars-Watch-Order/)` in your browser
+- Open [Star Wars Watch Order](https://erodri08.github.io/StarWars-Watch-Order/) in your browser
+## Pages
+
+| Page | URL |
+|---|---|
+| Main List | `index.html` |
+| The Clone Wars | `cw.html` |
+| Star Wars Rebels | `rebels.html` |
+| Star Wars Resistance | `resistance.html` |
+| The Mandalorian & Book of Boba Fett | `mando.html` |
+| The Bad Batch | `bad_batch.html` |
 
 ## Features
 
 ### Main List
 - Browse all Star Wars content (movies, TV, games) in chronological or release order, or drag-and-drop into a **custom order**
-- Filter by vital/skippabl, type, quality, and era (George Lucas vs. post-George)
-- Add new entries or edit existing ones via the Edit button when new star wars projects come out 
+- In custom order mode, select multiple items with Ctrl/Cmd+click and move them together with ▲ ▼ buttons
+- Filter by vitality (Vital / Non-Essential), type, quality (Great / Good / Meh / Bad), era (George Lucas vs. post-George), and custom tags
+- Add custom **tags** to any entry via the Edit button — tags are invisible in list view but become filterable in the Tags filter panel
+- Add new entries or edit existing ones via the Edit button
+- Hide individual entries from your watchthrough using the Hide button — hidden items appear in a collapsed section at the bottom and can be restored
 
-### Clone Wars Episodes
-- Full chronological episode list with vitality and quality ratings
-- Add **custom tags** to episodes (e.g. `anakin`, `maul`) via the Edit button — tags appear inline and become filterable in the filter bar
-- Edit vitality, quality, and notes per episode
+### Show Episode Lists (Clone Wars, Rebels, Resistance, Mando/BoBF, Bad Batch)
+- Full episode list with vitality, quality, and release date
+- Filter by season, vitality, quality, and custom tags
+- Tag filter panel is collapsible to save screen space
+- Add custom **tags** to episodes via the Edit button — tags are filterable but hidden from list view
+- Existing tags from other episodes are shown as quick-add pills in the Edit modal so tags stay consistent across episodes
+- Edit vitality, quality, release date, and notes per episode
+- Download the current episode data as JSON via the ↓ Download JSON button (then run `generate_data.py` to apply)
 
 ### Watchthroughs
-- Create named watchthroughs to track progress independently (e.g. "First Watch", "Rewatch 2025")
-- Check off items as you watch and the progress bar updates automatically
-- Main list and Clone Wars list have separate watchthroughs
+- Create named watchthroughs to track progress independently (e.g. "First Watch", "Rewatch 2026")
+- Check off items as you watch — the progress bar updates automatically
+- Each page (main list and all show pages) has its own independent watchthrough
 - Delete a watchthrough to reset its progress
+- Export your current filtered list as a plain `.txt` file (one title per line)
+
+### Export / Import
+- Export all watchthrough progress, custom order, hidden items, and tags as JSON from the ⇅ Export / Import button on the main page
+- Import that JSON on any device to restore your full state
+- Download `starwars_content.json` from the export panel to save any edits you've made to the main content list
 
 ## Updating Content
 
-The content data is inlined into `data.js` for compatibility with local file browsing. If you edit the JSON files in `data/`:
+Content is inlined into `data.js` for compatibility with local file browsing. To apply changes:
 
+1. Edit the relevant JSON file in `data/`
+2. Run:
 ```
 python3 generate_data.py
 ```
+1. Refresh the browser. Requires Python 3 
 
-Then refresh the browser. Requires Python 3 (no dependencies).
+Each show page also has a **↓ Download JSON** button in the nav bar that exports the current episode data (including any edits or tags you've added in the browser) back to JSON, ready to replace the file in `data/`.
 
 ## File Structure
 
 ```
 starwars/
-├── index.html              # Open this in your browser
+├── index.html                      # Main content list
+├── cw.html                         # The Clone Wars episodes
+├── rebels.html                     # Star Wars Rebels episodes
+├── resistance.html                 # Star Wars Resistance episodes
+├── mando.html                      # The Mandalorian & BoBF episodes
+├── bad_batch.html                  # The Bad Batch episodes
 ├── style.css
-├── app.js
-├── data.js                 # Auto-generated — don't edit directly
-├── generate_data.py        # Run to regenerate data.js after JSON edits
+├── app.js                          # Main list logic
+├── show_page.js                    # Shared engine for all show pages
+├── data.js                         # Auto-generated by generate_data.py — don't edit directly
+├── generate_data.py                # Run to regenerate data.js after JSON edits
 └── data/
     ├── starwars_content.json       # Main content list
-    ├── clone_wars_episodes.json    # CW episode list
-    ├── project_info.json           # Title, subtitle, labels
+    ├── clone_wars_episodes.json    # Clone Wars episode list
+    ├── rebels_episodes.json        # Rebels episode list
+    ├── resistance_episodes.json    # Resistance episode list
+    ├── mando_episodes.json         # Mandalorian & BoBF episode list
+    ├── bad_batch_episodes.json     # Bad Batch episode list
+    ├── project_info.json           # Title and subtitle
     ├── watchthroughs.json          # Template (actual data in localStorage)
     └── user_data.json              # Template (actual data in localStorage)
 ```
