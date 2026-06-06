@@ -48,13 +48,14 @@
 window.SHOW_DATA = {
   show: { id: 'clone_wars', title: 'The Clone Wars', color: '#64B4FF', years: '2008–2020' },
   episodes: CW_DATA.episodes.map(ep => ({
-    id:           'cw_' + String(ep.chron_num),
-    season:       ep.air_code === 'T' ? 'Film' : (String(ep.air_code)[0] === 'T' ? 'Film' : Number(String(ep.air_code).length >= 3 ? String(ep.air_code).slice(0, String(ep.air_code).length === 3 ? 1 : 2) : '0')),
-    episode:      ep.chron_num,
+    id:           ep.id,
+    season:       ep.season,
+    episode:      ep.episode,
     air_code:     ep.air_code,
     title:        ep.title,
     release_date: ep.release_date || undefined,
     release_year: ep.release_year || undefined,
+    timeline_position: ep.timeline_position || undefined,
     vitality:     ep.vitality,
     quality:      ep.quality,
     notes:        ep.notes || '',
