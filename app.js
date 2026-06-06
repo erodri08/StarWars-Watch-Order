@@ -6,7 +6,6 @@
 const KEYS = {
   WATCHTHROUGHS: 'sw_watchthroughs',
   USER_DATA:     'sw_user_data',
-  CW_TAGS:       'sw_cw_tags',
   MAIN_TAGS:     'sw_main_tags',
   CUSTOM_ORDER:  'sw_custom_order',
   HIDDEN_IDS:    'sw_hidden_ids',
@@ -17,27 +16,20 @@ let APP = {
   projectInfo: {},
   items: [],
   releaseOrder: [],
-  cwEpisodes: [],
 
   watchthroughs: [],
-  cwWatchthroughs: [],
   customOrder: [],
-  cwEpisodeTags: {},
-  mainItemTags: {},   // tags for main list items, keyed by item id
+  mainItemTags: {},
   hiddenIds: new Set(),
 
-  activeTab: 'main',
   activeWT: null,
-  activeCWWT: null,
   mainFilters: {
     vital: [], quality: [], type: [], tags: [],
     order: 'chronological',
     george: true, post_george: true,
   },
-  cwFilters: { vital: [], quality: [], tags: [] },
 
   editingItemId: null,
-  editingCWChronNum: null,
   selectedIds: new Set(),
 };
 
@@ -47,7 +39,6 @@ async function loadJSONFiles() {
     APP.projectInfo  = PROJECT_INFO;
     APP.items        = CONTENT_DATA.items || [];
     APP.releaseOrder = CONTENT_DATA.release_order || [];
-    APP.cwEpisodes   = CW_DATA.episodes || [];
   } catch (err) {
     console.error('Failed to load data:', err);
   }
@@ -59,8 +50,7 @@ function loadPersisted() {
     const wt = localStorage.getItem(KEYS.WATCHTHROUGHS);
     if (wt) {
       const p = JSON.parse(wt);
-      APP.watchthroughs   = p.watchthroughs || [];
-      APP.cwWatchthroughs = p.clone_wars_watchthroughs || [];
+      APP.watchthroughs = p.watchthroughs || [];
     }
   } catch(e) {}
 
@@ -68,22 +58,14 @@ function loadPersisted() {
     const ud = localStorage.getItem(KEYS.USER_DATA);
     if (ud) {
       const s = (JSON.parse(ud).app_state) || {};
-      if (s.activeTab)               APP.activeTab   = s.activeTab;
-      if (s.activeWT  !== undefined)  APP.activeWT   = s.activeWT;
-      if (s.activeCWWT !== undefined) APP.activeCWWT = s.activeCWWT;
+      if (s.activeWT !== undefined) APP.activeWT = s.activeWT;
       if (s.mainFilters) APP.mainFilters = { ...APP.mainFilters, ...s.mainFilters };
-      if (s.cwFilters)   APP.cwFilters   = { ...APP.cwFilters,   ...s.cwFilters };
     }
   } catch(e) {}
 
   try {
     const co = localStorage.getItem(KEYS.CUSTOM_ORDER);
     if (co) APP.customOrder = JSON.parse(co);
-  } catch(e) {}
-
-  try {
-    const tags = localStorage.getItem(KEYS.CW_TAGS);
-    if (tags) APP.cwEpisodeTags = JSON.parse(tags);
   } catch(e) {}
 
   try {
@@ -100,19 +82,17 @@ function loadPersisted() {
 function saveWatchthroughs() {
   localStorage.setItem(KEYS.WATCHTHROUGHS, JSON.stringify({
     watchthroughs: APP.watchthroughs,
-    clone_wars_watchthroughs: APP.cwWatchthroughs,
   }));
 }
 
 function saveUserData() {
   localStorage.setItem(KEYS.USER_DATA, JSON.stringify({
     app_state: {
-      activeTab: APP.activeTab, activeWT: APP.activeWT, activeCWWT: APP.activeCWWT,
-      mainFilters: APP.mainFilters, cwFilters: APP.cwFilters,
+      activeWT: APP.activeWT,
+      mainFilters: APP.mainFilters,
     },
   }));
   localStorage.setItem(KEYS.CUSTOM_ORDER, JSON.stringify(APP.customOrder));
-  localStorage.setItem(KEYS.CW_TAGS, JSON.stringify(APP.cwEpisodeTags));
   localStorage.setItem(KEYS.MAIN_TAGS, JSON.stringify(APP.mainItemTags));
   localStorage.setItem(KEYS.HIDDEN_IDS, JSON.stringify([...APP.hiddenIds]));
 }
@@ -132,8 +112,7 @@ function showSaveFlash() {
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function generateId() { return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7); }
 
-function getActiveWTObj()   { return APP.watchthroughs.find(w => w.id === APP.activeWT) || null; }
-function getActiveCWWTObj() { return APP.cwWatchthroughs.find(w => w.id === APP.activeCWWT) || null; }
+function getActiveWTObj() { return APP.watchthroughs.find(w => w.id === APP.activeWT) || null; }
 
 function isWatched(itemId) {
   const wt = getActiveWTObj();
@@ -144,19 +123,6 @@ function toggleWatched(itemId) {
   if (!wt) { alert('Create or select a watchthrough first!'); return; }
   if (!wt.watched) wt.watched = {};
   wt.watched[itemId] = !wt.watched[itemId];
-  wt.saved = new Date().toISOString();
-  saveAll(); render();
-}
-
-function isCWWatched(chronNum) {
-  const wt = getActiveCWWTObj();
-  return !!(wt?.watched?.[String(chronNum)]);
-}
-function toggleCWWatched(chronNum) {
-  const wt = getActiveCWWTObj();
-  if (!wt) { alert('Create or select a Clone Wars watchthrough first!'); return; }
-  if (!wt.watched) wt.watched = {};
-  wt.watched[String(chronNum)] = !wt.watched[String(chronNum)];
   wt.saved = new Date().toISOString();
   saveAll(); render();
 }
@@ -237,32 +203,6 @@ function getFilteredItems(includeHidden = false) {
   return items;
 }
 
-function getFilteredCWEps() {
-  const f = APP.cwFilters;
-  let eps = APP.cwEpisodes.map(e => ({ ...e }));
-
-  if (f.vital.length) {
-    eps = eps.filter(e =>
-      (f.vital.includes('vital') && e.vitality === 'vital') ||
-      (f.vital.includes('non-essential') && e.vitality === 'skippable')
-    );
-  }
-  if (f.quality.length) eps = eps.filter(e => f.quality.includes(e.quality));
-  if (f.tags.length) {
-    eps = eps.filter(e => {
-      const epTags = APP.cwEpisodeTags[String(e.chron_num)] || [];
-      return f.tags.every(t => epTags.includes(t));
-    });
-  }
-  return eps;
-}
-
-function getAllCWTags() {
-  const tagSet = new Set();
-  Object.values(APP.cwEpisodeTags).forEach(tags => tags.forEach(t => tagSet.add(t)));
-  return [...tagSet].sort();
-}
-
 function getAllMainTags() {
   const tagSet = new Set();
   Object.values(APP.mainItemTags).forEach(tags => tags.forEach(t => tagSet.add(t)));
@@ -293,28 +233,32 @@ function seedCustomOrder(basis) {
 }
 
 // ── RENDER ────────────────────────────────────────────────────────────────────
+const NAV_PAGES = [
+  {href:'index.html',      label:'◈ Main List',       color: null},
+  {href:'cw.html',         label:'◈ Clone Wars',      color:'#64B4FF'},
+  {href:'rebels.html',     label:'◈ Rebels',           color:'#E8A020'},
+  {href:'resistance.html', label:'◈ Resistance',       color:'#4AA8D8'},
+  {href:'mando.html',      label:'◈ Mando / BoBF',     color:'#8B7355'},
+  {href:'bad_batch.html',  label:'◈ Bad Batch',        color:'#6DB36D'},
+];
+
 function render() {
   renderNav();
-  if (APP.activeTab === 'main') renderMain();
-  else renderCW();
+  renderMain();
 }
 
 function renderNav() {
-  const pi = APP.projectInfo;
+  const pi  = APP.projectInfo;
   document.getElementById('headerTitle').textContent = `⬡ ${pi.title || 'STAR WARS WATCHLIST MAKER'} ⬡`;
-  document.getElementById('headerSub').textContent   = pi.subtitle || 'USE THIS PROGRAM TO CREATE YOUR IDEAL ORDER FOR A STAR WARS WATCHTHROUGH';
-  document.getElementById('navTabs').innerHTML = `
-    <button class="nav-tab ${APP.activeTab==='main'?'active':''}" onclick="switchTab('main')">◈ Main List</button>
-    <button class="nav-tab cw-tab ${APP.activeTab==='cw'?'active':''}" onclick="switchTab('cw')">◈ Clone Wars Episodes</button>
-    <button class="btn" style="margin-left:auto" onclick="openExportModal()">⇅ Export / Import</button>
-  `;
-}
-
-function switchTab(tab) {
-  APP.activeTab = tab;
-  APP.selectedIds = new Set();
-  saveUserData();
-  render();
+  document.getElementById('headerSub').textContent   = pi.subtitle || '';
+  const cur = location.pathname.split('/').pop() || 'index.html';
+  document.getElementById('navTabs').innerHTML =
+    NAV_PAGES.map(p => {
+      const active = p.href === cur;
+      const style  = p.color ? `style="--tab-color:${p.color}"` : '';
+      return `<a class="nav-tab ${active ? 'active' : ''}" href="${p.href}" ${style}>${p.label}</a>`;
+    }).join('') +
+    `<button class="btn" style="margin-left:auto" onclick="openExportModal()">⇅ Export / Import</button>`;
 }
 
 // ── SHARED UI PARTIALS ────────────────────────────────────────────────────────
@@ -492,67 +436,6 @@ function renderItemRow(item, num, watched, draggable, isHidden) {
 }
 
 // ── CLONE WARS RENDER ─────────────────────────────────────────────────────────
-function renderCW() {
-  const eps     = getFilteredCWEps();
-  const cwwt    = getActiveCWWTObj();
-  const allTags = getAllCWTags();
-
-  const vitalOpts = [['vital','Vital','active-vital'],['non-essential','Non-Essential','active-skippable']];
-  const qualOpts  = [['great','Great','active-great'],['good','Good','active-good'],['meh','Meh','active-meh'],['bad','Bad','active-bad']];
-
-  let html = `
-    <div class="section-row" style="gap:1rem; align-items:stretch;">
-      ${renderFilterPanel('Vital / Skippable', vitalOpts, APP.cwFilters.vital, 'toggleCWFilter', 'vital')}
-      ${renderFilterPanel('Quality', qualOpts, APP.cwFilters.quality, 'toggleCWFilter', 'quality')}
-      ${allTags.length ? `
-      <div class="panel" style="flex:2; min-width:220px;">
-        <div class="panel-title">Tags</div>
-        <div class="filter-chips">
-          ${allTags.map(t => `<button class="chip ${APP.cwFilters.tags.includes(t)?'active-tag':''}" onclick="toggleCWFilter('tags','${t}')">${t}</button>`).join('')}
-        </div>
-      </div>` : ''}
-    </div>
-  `;
-
-  html += renderWatchthroughBar(APP.cwWatchthroughs, APP.activeCWWT, 'selectCWWT', 'openNewCWWTModal', 'deleteCWWT', 'exportCWWatchlistTxt');
-
-  if (cwwt) html += renderProgressBar(eps.filter(e => isCWWatched(e.chron_num)).length, eps.length, '#64B4FF');
-
-  html += `<div class="top-actions">
-    <span style="font-family:'Orbitron',monospace;font-size:10px;color:var(--sw-muted);">Chronological Order — ${eps.length} episodes</span>
-  </div>`;
-
-  html += `<div class="items-list">`;
-  if (eps.length === 0) html += `<div class="empty-state">No episodes match current filters</div>`;
-
-  eps.forEach((ep, listIdx) => {
-    const w = isCWWatched(ep.chron_num);
-    // ep code first, then vital, then quality
-    const epBadge = `<span class="badge badge-ep">${formatAirCode(ep.air_code)}</span>`;
-    const vBadge  = ep.vitality === 'vital'
-      ? `<span class="badge badge-vital">Vital</span>`
-      : ep.vitality === 'skippable'
-        ? `<span class="badge badge-skip">Non-Ess.</span>`
-        : '';
-    const qBadge  = ep.quality ? `<span class="badge badge-${ep.quality}">${ep.quality}</span>` : '';
-    const epTags  = APP.cwEpisodeTags[String(ep.chron_num)] || [];
-    const tagHtml = epTags.map(t => `<span class="badge badge-tag">${t}</span>`).join('');
-
-    html += `
-      <div class="item-row ${w?'watched':''}" onclick="toggleCWWatched('${ep.chron_num}')">
-        <div class="item-check ${w?'checked':''}">${w?'✓':''}</div>
-        <div class="item-num">${listIdx+1}</div>
-        <div class="item-badges">${epBadge}${vBadge}${qBadge}</div>
-        <div class="item-title ${w?'watched-title':''}">${ep.title}${tagHtml ? ' '+tagHtml : ''}</div>
-        <button class="item-edit-btn" onclick="event.stopPropagation();openEditCWEpModal('${ep.chron_num}')">Edit</button>
-      </div>
-    `;
-  });
-
-  html += `</div>`;
-  document.getElementById('appContent').innerHTML = html;
-}
-
 // ── DRAG AND DROP (Custom Order) ──────────────────────────────────────────────
 function initDragDrop() {
   const list = document.getElementById('mainItemsList');
@@ -670,19 +553,10 @@ function toggleEra(key) {
   saveUserData(); render();
 }
 
-function toggleCWFilter(category, value) {
-  const arr = APP.cwFilters[category];
-  const idx = arr.indexOf(value);
-  if (idx >= 0) arr.splice(idx, 1); else arr.push(value);
-  saveUserData(); render();
-}
-
 // ── WATCHTHROUGH ACTIONS ──────────────────────────────────────────────────────
-function selectWT(id)   { APP.activeWT   = id || null; saveAll(); render(); }
-function selectCWWT(id) { APP.activeCWWT = id || null; saveAll(); render(); }
+function selectWT(id) { APP.activeWT = id || null; saveAll(); render(); }
 
-function openNewWTModal()   { showWTModal('New Watchthrough', 'e.g. First Watch 2024', 'createWT'); }
-function openNewCWWTModal() { showWTModal('New Clone Wars Watchthrough', 'e.g. Clone Wars Run 2024', 'createCWWT'); }
+function openNewWTModal() { showWTModal('New Watchthrough', 'e.g. First Watch 2024', 'createWT'); }
 
 function showWTModal(title, placeholder, saveFn) {
   document.getElementById('wtModalBody').innerHTML = `
@@ -708,15 +582,6 @@ function createWT() {
   saveAll(); closeModal('wtModal'); render();
 }
 
-function createCWWT() {
-  const name = document.getElementById('wtNameInput').value.trim();
-  if (!name) return;
-  const wt = { id: generateId(), name, watched: {}, created: new Date().toISOString(), saved: new Date().toISOString() };
-  APP.cwWatchthroughs.push(wt);
-  APP.activeCWWT = wt.id;
-  saveAll(); closeModal('wtModal'); render();
-}
-
 function deleteWT() {
   if (!confirm('Delete this watchthrough? All progress will be lost.')) return;
   APP.watchthroughs = APP.watchthroughs.filter(w => w.id !== APP.activeWT);
@@ -724,21 +589,10 @@ function deleteWT() {
   saveAll(); render();
 }
 
-function deleteCWWT() {
-  if (!confirm('Delete this Clone Wars watchthrough? All progress will be lost.')) return;
-  APP.cwWatchthroughs = APP.cwWatchthroughs.filter(w => w.id !== APP.activeCWWT);
-  APP.activeCWWT = null;
-  saveAll(); render();
-}
-
 // ── EXPORT WATCHLIST AS TXT ───────────────────────────────────────────────────
 function exportWatchlistTxt() {
   const items = getFilteredItems(false);
   downloadTxt(items.map(i => i.title).join('\n'), 'watchlist.txt');
-}
-
-function exportCWWatchlistTxt() {
-  downloadTxt(getFilteredCWEps().map(e => e.title).join('\n'), 'cw-watchlist.txt');
 }
 
 function downloadTxt(content, filename) {
@@ -970,119 +824,18 @@ function refreshMainTagsDisplay() {
   }
 }
 
-// ── CW EPISODE EDIT MODAL ─────────────────────────────────────────────────────
-function openEditCWEpModal(chronNum) {
-  APP.editingCWChronNum = String(chronNum);
-  const ep = APP.cwEpisodes.find(e => String(e.chron_num) === String(chronNum));
-  if (!ep) return;
-  document.getElementById('itemModalTitle').textContent = 'Edit Clone Wars Episode';
-  document.getElementById('itemModalBody').innerHTML = buildCWEpForm(ep, APP.cwEpisodeTags[String(chronNum)] || []);
-  document.getElementById('itemModal').classList.add('open');
-}
-
-function buildCWEpForm(ep, epTags) {
-  const sel = (val, match) => val === match ? 'selected' : '';
-  return `
-    <div class="form-group">
-      <label class="form-label">Title</label>
-      <input class="form-input" id="cwef_title" value="${escHtml(ep.title)}" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">Episode Code (e.g. 301 = S3E1)</label>
-      <input class="form-input" id="cwef_ep" value="${escHtml(String(ep.air_code))}" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">Vitality</label>
-      <select class="form-select" id="cwef_vital">
-        <option value=""          ${!ep.vitality?'selected':''}>Unknown</option>
-        <option value="vital"     ${sel(ep.vitality,'vital')}>Vital</option>
-        <option value="skippable" ${sel(ep.vitality,'skippable')}>Skippable</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Quality</label>
-      <select class="form-select" id="cwef_quality">
-        <option value=""      ${!ep.quality?'selected':''}>Unknown</option>
-        <option value="great" ${sel(ep.quality,'great')}>Great</option>
-        <option value="good"  ${sel(ep.quality,'good')}>Good</option>
-        <option value="meh"   ${sel(ep.quality,'meh')}>Meh</option>
-        <option value="bad"   ${sel(ep.quality,'bad')}>Bad</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Notes</label>
-      <input class="form-input" id="cwef_notes" value="${escHtml(ep.notes||'')}" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">Tags</label>
-      <div class="tag-input-row">
-        <input class="form-input" id="cwef_tagInput" placeholder="e.g. anakin, ahsoka, maul" onkeydown="cwTagKeydown(event)" />
-        <button class="btn" onclick="addCWTag()">Add</button>
-      </div>
-      <div class="tags-display" id="cwTagsDisplay">
-        ${epTags.map(t => `
-          <span class="tag-pill">${escHtml(t)}
-            <span class="tag-pill-remove" onclick="removeCWTag('${escHtml(t)}')">✕</span>
-          </span>`).join('')}
-      </div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn primary" onclick="saveCWEp()">Save</button>
-      <button class="btn" onclick="closeModal('itemModal')">Cancel</button>
-    </div>
-  `;
-}
-
-function cwTagKeydown(e) { if (e.key === 'Enter') { e.preventDefault(); addCWTag(); } }
-
-function addCWTag() {
-  const input  = document.getElementById('cwef_tagInput');
-  const val    = input.value.trim().toLowerCase().replace(/\s+/g, '-');
-  if (!val) return;
-  const epTags = APP.cwEpisodeTags[APP.editingCWChronNum] || [];
-  if (!epTags.includes(val)) APP.cwEpisodeTags[APP.editingCWChronNum] = [...epTags, val];
-  input.value = '';
-  refreshCWTagsDisplay();
-}
-
-function removeCWTag(tag) {
-  APP.cwEpisodeTags[APP.editingCWChronNum] = (APP.cwEpisodeTags[APP.editingCWChronNum] || []).filter(t => t !== tag);
-  refreshCWTagsDisplay();
-}
-
-function refreshCWTagsDisplay() {
-  const epTags = APP.cwEpisodeTags[APP.editingCWChronNum] || [];
-  document.getElementById('cwTagsDisplay').innerHTML = epTags.map(t => `
-    <span class="tag-pill">${escHtml(t)}
-      <span class="tag-pill-remove" onclick="removeCWTag('${escHtml(t)}')">✕</span>
-    </span>`).join('');
-}
-
-function saveCWEp() {
-  const ep = APP.cwEpisodes.find(e => String(e.chron_num) === APP.editingCWChronNum);
-  if (!ep) return;
-  ep.title    = document.getElementById('cwef_title').value.trim() || ep.title;
-  ep.air_code = document.getElementById('cwef_ep').value.trim() || ep.air_code;
-  ep.vitality = document.getElementById('cwef_vital').value || null;
-  ep.quality  = document.getElementById('cwef_quality').value || null;
-  ep.notes    = document.getElementById('cwef_notes').value.trim();
-  saveAll(); closeModal('itemModal'); render();
-}
-
 // ── EXPORT / IMPORT ───────────────────────────────────────────────────────────
 function openExportModal() {
   const exportData = JSON.stringify({
-    version: 5,
+    version: 6,
     exported: new Date().toISOString(),
     watchthroughs: APP.watchthroughs,
-    cwWatchthroughs: APP.cwWatchthroughs,
     customOrder: APP.customOrder,
-    cwEpisodeTags: APP.cwEpisodeTags,
     mainItemTags: APP.mainItemTags,
     hiddenIds: [...APP.hiddenIds],
     appState: {
-      activeWT: APP.activeWT, activeCWWT: APP.activeCWWT,
-      mainFilters: APP.mainFilters, cwFilters: APP.cwFilters,
+      activeWT: APP.activeWT,
+      mainFilters: APP.mainFilters,
     },
   }, null, 2);
 
@@ -1100,15 +853,14 @@ function openExportModal() {
     <p id="exportMsg" style="color:#81C784;font-size:12px;margin-top:8px;display:none;">Copied!</p>
 
     <div class="export-divider"></div>
-    <div class="export-section-title">↓ Download Content JSONs</div>
+    <div class="export-section-title">↓ Download Content JSON</div>
     <p style="color:var(--sw-muted);font-size:12px;margin-bottom:0.75rem;line-height:1.5;">
-      Downloads your current in-app content as JSON files, including any edits made to titles,
-      dates, vitality, quality, or notes. Replace the files in <code>data/</code> and re-run
-      <code>generate_data.py</code> to update <code>data.js</code>.
+      Downloads the main content JSON with any edits you've made. Replace the file in <code>data/</code>
+      and re-run <code>generate_data.py</code> to update <code>data.js</code>.
+      Each show page has its own ↓ Download JSON button for episode data.
     </p>
     <div class="modal-actions">
       <button class="btn" onclick="downloadContentJSON()">↓ starwars_content.json</button>
-      <button class="btn" onclick="downloadCWJSON()">↓ clone_wars_episodes.json</button>
     </div>
   `;
   document.getElementById('exportModal').classList.add('open');
@@ -1125,17 +877,13 @@ function copyExport() {
 function importData() {
   try {
     const data = JSON.parse(document.getElementById('exportText').value);
-    if (data.watchthroughs)   APP.watchthroughs   = data.watchthroughs;
-    if (data.cwWatchthroughs) APP.cwWatchthroughs  = data.cwWatchthroughs;
-    if (data.customOrder)     APP.customOrder      = data.customOrder;
-    if (data.cwEpisodeTags)   APP.cwEpisodeTags    = data.cwEpisodeTags;
-    if (data.mainItemTags)    APP.mainItemTags     = data.mainItemTags;
-    if (data.hiddenIds)       APP.hiddenIds        = new Set(data.hiddenIds);
+    if (data.watchthroughs) APP.watchthroughs = data.watchthroughs;
+    if (data.customOrder)   APP.customOrder   = data.customOrder;
+    if (data.mainItemTags)  APP.mainItemTags  = data.mainItemTags;
+    if (data.hiddenIds)     APP.hiddenIds     = new Set(data.hiddenIds);
     if (data.appState) {
-      if (data.appState.activeWT   !== undefined) APP.activeWT   = data.appState.activeWT;
-      if (data.appState.activeCWWT !== undefined) APP.activeCWWT = data.appState.activeCWWT;
+      if (data.appState.activeWT !== undefined) APP.activeWT = data.appState.activeWT;
       if (data.appState.mainFilters) APP.mainFilters = { ...APP.mainFilters, ...data.appState.mainFilters };
-      if (data.appState.cwFilters)   APP.cwFilters   = { ...APP.cwFilters,   ...data.appState.cwFilters };
     }
     saveAll(); closeModal('exportModal'); render();
     alert('Data imported successfully!');
@@ -1146,16 +894,6 @@ function importData() {
 
 function downloadContentJSON() {
   downloadTxt(JSON.stringify({ items: APP.items, release_order: APP.releaseOrder }, null, 2), 'starwars_content.json');
-}
-
-function downloadCWJSON() {
-  const episodes = APP.cwEpisodes.map(ep => {
-    const tags = APP.cwEpisodeTags[String(ep.chron_num)];
-    if (tags && tags.length > 0) return { ...ep, tags };
-    const { tags: _removed, ...rest } = ep;
-    return rest;
-  });
-  downloadTxt(JSON.stringify({ episodes }, null, 2), 'clone_wars_episodes.json');
 }
 
 // ── MODAL UTILS ───────────────────────────────────────────────────────────────

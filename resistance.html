@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Wars Watchlist</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  :root { --show-color: #4AA8D8; }
+  .header h1 { color: var(--show-color); text-shadow: 0 0 30px color-mix(in srgb, var(--show-color) 30%, transparent); }
+  .nav-tab.active { border-color: var(--show-color); color: var(--show-color); background: color-mix(in srgb, var(--show-color) 10%, transparent); }
+  .progress-fill { background: var(--show-color) !important; }
+</style>
+</head>
+<body>
+<div class="stars-bg"></div>
+<div class="app-wrapper">
+
+  <div class="header">
+    <h1 id="showTitle">⬡ LOADING ⬡</h1>
+    <p id="showYears" style="color:var(--sw-muted);font-size:15px;letter-spacing:2px;margin-top:4px;"></p>
+  </div>
+
+  <div class="nav-tabs" id="navTabs"></div>
+  <div id="filtersArea"></div>
+  <div id="wtArea"></div>
+  <div class="items-list" id="epList"></div>
+
+  <!-- Item Edit Modal -->
+  <div class="modal-overlay" id="itemModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('itemModal')">✕</button>
+      <div class="modal-title" id="itemModalTitle">Edit Episode</div>
+      <div id="itemModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Watchthrough Modal -->
+  <div class="modal-overlay" id="wtModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('wtModal')">✕</button>
+      <div class="modal-title">Watchthrough</div>
+      <div id="wtModalBody"></div>
+    </div>
+  </div>
+
+  <div class="save-indicator" id="saveIndicator">SAVED</div>
+
+</div>
+<script src="data.js"></script>
+<script>window.SHOW_DATA = RESISTANCE_DATA;</script>
+<script>
+// Shared nav injection
+document.addEventListener('DOMContentLoaded', () => {
+  const pages = [
+    {href:'index.html',   label:'◈ Main List'},
+    {href:'cw.html',      label:'◈ Clone Wars',    color:'#64B4FF'},
+    {href:'rebels.html',  label:'◈ Rebels',         color:'#E8A020'},
+    {href:'resistance.html', label:'◈ Resistance',  color:'#4AA8D8'},
+    {href:'mando.html',   label:'◈ Mando / BoBF',   color:'#8B7355'},
+    {href:'bad_batch.html',label:'◈ Bad Batch',     color:'#6DB36D'},
+  ];
+  const cur = location.pathname.split('/').pop() || 'index.html';
+  document.getElementById('navTabs').innerHTML =
+    pages.map(p => {
+      const active = p.href === cur;
+      const style  = p.color ? `--tab-color:${p.color}` : '';
+      return `<a class="nav-tab ${active?'active':''}" href="${p.href}" style="${style}">${p.label}</a>`;
+    }).join('') +
+    `<button class="btn" style="margin-left:auto" onclick="downloadJSON()">↓ Download JSON</button>`;
+});
+</script>
+<script src="show_page.js"></script>
+</body>
+</html>

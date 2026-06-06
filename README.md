@@ -4,7 +4,7 @@ A html app to create a watch order for all star wars content
 
 ## Access
 
-- open `https://erodri08.github.io/StarWars-Watch-Order/` in your browser
+- open `(https://erodri08.github.io/StarWars-Watch-Order/)` in your browser
 
 ## Features
 
