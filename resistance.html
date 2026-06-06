@@ -6,7 +6,7 @@
 <title>Star Wars Watchlist</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  :root { --show-color: #4AA8D8; }
+  :root { --show-color: #E8DFA0; }
   .header h1 { color: var(--show-color); text-shadow: 0 0 30px color-mix(in srgb, var(--show-color) 30%, transparent); }
   .nav-tab.active { border-color: var(--show-color); color: var(--show-color); background: color-mix(in srgb, var(--show-color) 10%, transparent); }
   .progress-fill { background: var(--show-color) !important; }
@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     {href:'index.html',   label:'◈ Main List'},
     {href:'cw.html',      label:'◈ Clone Wars',    color:'#64B4FF'},
     {href:'rebels.html',  label:'◈ Rebels',         color:'#E8A020'},
-    {href:'resistance.html', label:'◈ Resistance',  color:'#4AA8D8'},
+    {href:'resistance.html', label:'◈ Resistance',  color:'#E8DFA0'},
     {href:'mando.html',   label:'◈ Mando / BoBF',   color:'#8B7355'},
-    {href:'bad_batch.html',label:'◈ Bad Batch',     color:'#6DB36D'},
+    {href:'bad_batch.html',label:'◈ Bad Batch',     color:'#C0392B'},
   ];
   const cur = location.pathname.split('/').pop() || 'index.html';
   document.getElementById('navTabs').innerHTML =

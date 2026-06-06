@@ -166,21 +166,18 @@ function renderFilters() {
 
   html += `</div>`;
 
-  // Tags row — collapsible when > 8 tags
+  // Tags row — always collapsible, collapsed by default
   if (allTags.length > 0) {
-    const COLLAPSE_THRESHOLD = 8;
-    const needsCollapse = allTags.length > COLLAPSE_THRESHOLD;
-    const visibleTags   = (!needsCollapse || S.tagsExpanded) ? allTags : allTags.slice(0, COLLAPSE_THRESHOLD);
     html += `
       <div class="section-row" style="gap:1rem;align-items:stretch;">
         <div class="panel" style="flex:1;">
-          <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
+          <div class="panel-title" style="display:flex;align-items:center;gap:8px;cursor:pointer;" onclick="toggleTagsExpanded()">
             Tags
-            ${needsCollapse ? `<button class="tag-collapse-btn" onclick="toggleTagsExpanded()">${S.tagsExpanded ? '▲ Show less' : '▼ Show all ('+allTags.length+')'}</button>` : ''}
+            <button class="tag-collapse-btn">${S.tagsExpanded ? '▲ Collapse' : '▼ Show ('+allTags.length+')'}</button>
           </div>
-          <div class="filter-chips">
-            ${visibleTags.map(t => `<button class="chip ${f.tags.includes(t)?'active-tag':''}" onclick="toggleF('tags','${esc(t)}')">${esc(t)}</button>`).join('')}
-          </div>
+          ${S.tagsExpanded ? `<div class="filter-chips" style="margin-top:8px;">
+            ${allTags.map(t => `<button class="chip ${f.tags.includes(t)?'active-tag':''}" onclick="event.stopPropagation();toggleF('tags','${esc(t)}')">${esc(t)}</button>`).join('')}
+          </div>` : ''}
         </div>
       </div>
     `;
@@ -256,7 +253,6 @@ function renderEpRow(ep, num) {
       ? `<span class="badge badge-skip">Non-Ess.</span>`
       : '';
   const qBadge  = ep.quality ? `<span class="badge badge-${ep.quality}">${ep.quality}</span>` : '';
-  const tagHtml = (ep.tags||[]).map(t => `<span class="badge badge-tag">${esc(t)}</span>`).join('');
   const noteStr = ep.notes ? ` <span class="item-note">${esc(ep.notes)}</span>` : '';
 
   return `
@@ -264,7 +260,7 @@ function renderEpRow(ep, num) {
       <div class="item-check ${w?'checked':''}">${w?'✓':''}</div>
       <div class="item-num">${num}</div>
       <div class="item-badges">${epBadge}${vBadge}${qBadge}</div>
-      <div class="item-title ${w?'watched-title':''}">${esc(ep.title)}${noteStr}${tagHtml?' '+tagHtml:''}</div>
+      <div class="item-title ${w?'watched-title':''}">${esc(ep.title)}${noteStr}</div>
       <div class="item-year">${dateStr}</div>
       <button class="item-edit-btn" onclick="event.stopPropagation();openEditEp('${ep.id}')">Edit</button>
     </div>`;
