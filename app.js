@@ -31,6 +31,7 @@ let APP = {
 
   editingItemId: null,
   selectedIds: new Set(),
+  mainTagsExpanded: false,
 };
 
 // ── DATA LOAD ─────────────────────────────────────────────────────────────────
@@ -339,10 +340,13 @@ function renderMain() {
       </div>
       ${allMainTags.length ? `
       <div class="panel" style="flex:2; min-width:220px;">
-        <div class="panel-title">Tags</div>
-        <div class="filter-chips">
-          ${allMainTags.map(t => `<button class="chip ${APP.mainFilters.tags.includes(t)?'active-tag':''}" onclick="toggleFilter('tags','${t}')">${t}</button>`).join('')}
+        <div class="panel-title" style="display:flex;align-items:center;gap:8px;cursor:pointer;" onclick="toggleMainTags()">
+          Tags
+          <button class="tag-collapse-btn">${APP.mainTagsExpanded ? '▲ Collapse' : '▼ Show ('+allMainTags.length+')'}</button>
         </div>
+        ${APP.mainTagsExpanded ? `<div class="filter-chips" style="margin-top:8px;">
+          ${allMainTags.map(t => `<button class="chip ${APP.mainFilters.tags.includes(t)?'active-tag':''}" onclick="event.stopPropagation();toggleFilter('tags','${t}')">${t}</button>`).join('')}
+        </div>` : ''}
       </div>` : ''}
     </div>
   `;
@@ -551,6 +555,11 @@ function setOrder(order) {
 function toggleEra(key) {
   APP.mainFilters[key] = !APP.mainFilters[key];
   saveUserData(); render();
+}
+
+function toggleMainTags() {
+  APP.mainTagsExpanded = !APP.mainTagsExpanded;
+  render();
 }
 
 // ── WATCHTHROUGH ACTIONS ──────────────────────────────────────────────────────
