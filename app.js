@@ -2,7 +2,7 @@
 // Star Wars Watchlist Maker — app.js
 // ─────────────────────────────────────────────────────────────────────────────
 
-// STORAGE KEYS 
+// STORAGE KEYS
 const KEYS = {
   WATCHTHROUGHS: 'sw_watchthroughs',
   USER_DATA:     'sw_user_data',
@@ -11,7 +11,7 @@ const KEYS = {
   HIDDEN_IDS:    'sw_hidden_ids',
 };
 
-// STATE 
+// STATE
 let APP = {
   projectInfo: {},
   items: [],
@@ -32,6 +32,7 @@ let APP = {
   editingItemId: null,
   selectedIds: new Set(),
   mainTagsExpanded: false,
+  mainTagSearch: '',
 };
 
 // DATA LOAD
@@ -45,7 +46,7 @@ async function loadJSONFiles() {
   }
 }
 
-// PERSIST 
+// PERSIST
 function loadPersisted() {
   try {
     const wt = localStorage.getItem(KEYS.WATCHTHROUGHS);
@@ -166,7 +167,7 @@ function toggleHidden(itemId) {
 // FILTERING
 function getFilteredItems(includeHidden = false) {
   const f = APP.mainFilters;
-  let items = APP.items.filter(i => includeHidden ? APP.hiddenIds.has(i.id) : !APP.hiddenIds.has(i.id));
+    let items = APP.items.filter(i => includeHidden ? APP.hiddenIds.has(i.id) : !APP.hiddenIds.has(i.id));
 
   if (f.order === 'release') {
     items.sort((a, b) => releaseSortKey(a) - releaseSortKey(b));
@@ -259,7 +260,7 @@ function renderNav() {
     `<button class="btn" style="margin-left:auto" onclick="openExportModal()">⇅ Export / Import</button>`;
 }
 
-// SHARED UI PARTIALS 
+// SHARED UI PARTIALS
 function renderWatchthroughBar(wtList, activeId, onChangeFn, onNewFn, onDeleteFn, onExportFn) {
   const hasActive = !!activeId;
   return `
@@ -339,11 +340,23 @@ function renderMain() {
       <div class="panel" style="flex:2; min-width:220px;">
         <div class="panel-title" style="display:flex;align-items:center;gap:8px;cursor:pointer;" onclick="toggleMainTags()">
           Tags
+          ${APP.mainFilters.tags.length ? `<span style="font-size:10px;color:var(--sw-gold);letter-spacing:0;">${APP.mainFilters.tags.length} active</span>` : ''}
           <button class="tag-collapse-btn">${APP.mainTagsExpanded ? '▲ Collapse' : '▼ Show ('+allMainTags.length+')'}</button>
         </div>
-        ${APP.mainTagsExpanded ? `<div class="filter-chips" style="margin-top:8px;">
-          ${allMainTags.map(t => `<button class="chip ${APP.mainFilters.tags.includes(t)?'active-tag':''}" onclick="event.stopPropagation();toggleFilter('tags','${t}')">${t}</button>`).join('')}
-        </div>` : ''}
+        ${APP.mainTagsExpanded ? `
+          <input class="form-input" style="margin-top:8px;margin-bottom:8px;font-size:13px;padding:5px 8px;"
+            placeholder="Search tags…" value="${escHtml(APP.mainTagSearch||'')}"
+            oninput="APP.mainTagSearch=this.value;renderMain()"
+            onclick="event.stopPropagation()" />
+          <div class="filter-chips">
+            ${(() => {
+              const q = (APP.mainTagSearch||'').toLowerCase().trim();
+              const vis = q ? allMainTags.filter(t => t.includes(q)) : allMainTags;
+              return vis.length
+                ? vis.map(t => `<button class="chip ${APP.mainFilters.tags.includes(t)?'active-tag':''}" onclick="event.stopPropagation();toggleFilter('tags','${t}')">${t}</button>`).join('')
+                : `<span style="color:var(--sw-muted);font-size:12px;">No tags match</span>`;
+            })()}
+          </div>` : ''}
       </div>` : ''}
     </div>
   `;
@@ -436,7 +449,7 @@ function renderItemRow(item, num, watched, draggable, isHidden) {
   `;
 }
 
-// DRAG AND DROP (Custom Order) 
+// DRAG AND DROP (Custom Order)
 function initDragDrop() {
   const list = document.getElementById('mainItemsList');
   if (!list) return;
@@ -558,7 +571,7 @@ function toggleMainTags() {
   render();
 }
 
-// WATCHTHROUGH ACTIONS 
+// WATCHTHROUGH ACTIONS
 function selectWT(id) { APP.activeWT = id || null; saveAll(); render(); }
 
 function openNewWTModal() { showWTModal('New Watchthrough', 'e.g. First Watch 2024', 'createWT'); }
@@ -594,7 +607,7 @@ function deleteWT() {
   saveAll(); render();
 }
 
-// EXPORT WATCHLIST AS TXT 
+// EXPORT WATCHLIST AS TXT
 function exportWatchlistTxt() {
   const items = getFilteredItems(false);
   downloadTxt(items.map(i => i.title).join('\n'), 'watchlist.txt');
@@ -625,7 +638,7 @@ function handleItemClick(event, itemId) {
 
 // ITEM EDIT MODALS
 function openAddItemModal() {
-  APP.editingItemId = generateId();  
+  APP.editingItemId = generateId();
   document.getElementById('itemModalTitle').textContent = 'Add New Entry';
   document.getElementById('itemModalBody').innerHTML = buildItemForm(null);
   document.getElementById('itemModal').classList.add('open');
@@ -702,13 +715,15 @@ function buildItemForm(item) {
     <div class="form-group">
       <label class="form-label">Tags</label>
       <div class="tag-input-row">
-        <input class="form-input" id="ef_tagInput" placeholder="e.g. skywalker, dark-side, mandalore" onkeydown="mainTagKeydown(event)" />
+        <input class="form-input" id="ef_tagInput" placeholder="New tag…" onkeydown="mainTagKeydown(event)" oninput="filterMainPool()" />
         <button class="btn" onclick="addMainTag()">Add</button>
       </div>
       ${(() => {
         const existing = getAllMainTags().filter(t => !itemTags.includes(t));
         return existing.length ? `
           <div class="tag-existing-label">Existing tags — click to add:</div>
+          <input class="form-input" id="mainPoolSearch" style="margin-bottom:6px;font-size:13px;padding:5px 8px;"
+            placeholder="Search existing tags…" oninput="filterMainPool()" />
           <div class="tag-existing-pool" id="mainTagPool">
             ${existing.map(t => `<button class="tag-existing-pill" onclick="addMainTagDirect('${escHtml(t)}')">${escHtml(t)}</button>`).join('')}
           </div>` : '<div class="tag-existing-pool" id="mainTagPool" style="display:none"></div>';
@@ -751,7 +766,7 @@ function saveItem() {
     // Editing existing item
     Object.assign(existingItem, data);
   } else {
-    const newItem = {
+        const newItem = {
       ...data,
       id: APP.editingItemId,
       chronological_order: Math.max(...APP.items.map(i => i.chronological_order || 0), 0) + 1,
@@ -779,7 +794,7 @@ function deleteItem(id) {
   saveAll(); closeModal('itemModal'); render();
 }
 
-// MAIN ITEM TAG FUNCTIONS 
+// MAIN ITEM TAG FUNCTIONS
 function mainTagKeydown(e) { if (e.key === 'Enter') { e.preventDefault(); addMainTag(); } }
 
 function addMainTag() {
@@ -792,7 +807,6 @@ function addMainTag() {
   refreshMainTagsDisplay();
 }
 
-// Add a tag directly from the existing-tags pool 
 function addMainTagDirect(tag) {
   if (!APP.editingItemId) return;
   const tags = APP.mainItemTags[APP.editingItemId] || [];
@@ -806,26 +820,32 @@ function removeMainTag(tag) {
   refreshMainTagsDisplay();
 }
 
+function filterMainPool() {
+  const tagInput   = document.getElementById('ef_tagInput');
+  const poolSearch = document.getElementById('mainPoolSearch');
+  const query      = (poolSearch?.value || tagInput?.value || '').toLowerCase().trim();
+  const pool       = document.getElementById('mainTagPool');
+  if (!pool) return;
+  const tags      = APP.mainItemTags[APP.editingItemId] || [];
+  const available = getAllMainTags().filter(t => !tags.includes(t));
+  const visible   = query ? available.filter(t => t.includes(query)) : available;
+  if (visible.length) {
+    pool.style.display = '';
+    pool.innerHTML = visible.map(t =>
+      `<button class="tag-existing-pill" onclick="addMainTagDirect('${escHtml(t)}')">${escHtml(t)}</button>`
+    ).join('');
+  } else {
+    pool.innerHTML = `<span style="color:var(--sw-muted);font-size:12px;">${available.length ? 'No tags match' : ''}</span>`;
+  }
+}
+
 function refreshMainTagsDisplay() {
   const tags = APP.mainItemTags[APP.editingItemId] || [];
-  // Refresh applied tags
   document.getElementById('mainTagsDisplay').innerHTML = tags.map(t => `
     <span class="tag-pill">${escHtml(t)}
       <span class="tag-pill-remove" onclick="removeMainTag('${escHtml(t)}')">✕</span>
     </span>`).join('');
-  // Refresh existing pool — hide tags already applied
-  const pool = document.getElementById('mainTagPool');
-  if (pool) {
-    const available = getAllMainTags().filter(t => !tags.includes(t));
-    if (available.length) {
-      pool.style.display = '';
-      pool.innerHTML = available.map(t =>
-        `<button class="tag-existing-pill" onclick="addMainTagDirect('${escHtml(t)}')">${escHtml(t)}</button>`
-      ).join('');
-    } else {
-      pool.style.display = 'none';
-    }
-  }
+  filterMainPool();
 }
 
 // EXPORT / IMPORT

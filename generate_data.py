@@ -42,4 +42,4 @@ out_path = os.path.join(base, 'data.js')
 with open(out_path, 'w') as f:
     f.write(out)
 
-print(f"✓ data.js written ({len(out):,} bytes)")
+print(f"data.js written ({len(out):,} bytes)")

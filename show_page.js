@@ -12,21 +12,24 @@ const SK        = {
   WT:      `sw_show_${SHOW_ID}_wt`,
   ACTIVE:  `sw_show_${SHOW_ID}_active`,
   FILTERS: `sw_show_${SHOW_ID}_filters`,
-  TAGS:    `sw_show_${SHOW_ID}_tags`,     // { episodeId: [tag,...] } — merged with JSON tags on load
+  TAGS:    `sw_show_${SHOW_ID}_tags`,
+  EDITS:   `sw_show_${SHOW_ID}_edits`,  
 };
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
 let S = {
   show: SHOW_DATA.show,
-  episodes: [],           // working copy with tags merged in from localStorage
+  episodes: [],
 
   watchthroughs: [],
   activeWT: null,
 
   filters: { vital: [], quality: [], tags: [], seasons: [] },
   tagsExpanded: false,
+  tagSearch: '', 
 
   editingEpId: null,
+  editTagSearch: '',  
 };
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -58,9 +61,18 @@ function getSeasons() {
 
 // ── PERSIST ───────────────────────────────────────────────────────────────────
 function load() {
-  // Deep-copy episodes from data, merge saved tags from localStorage
+  // Start from JSON data as the base
   S.episodes = SHOW_DATA.episodes.map(ep => ({ ...ep, tags: [...(ep.tags||[])] }));
 
+  // Restore full episode edits (vitality, quality, notes, title, air_code, dates, tags)
+  try {
+    const edits = JSON.parse(localStorage.getItem(SK.EDITS) || '{}');
+    S.episodes.forEach(ep => {
+      if (edits[ep.id]) Object.assign(ep, edits[ep.id]);
+    });
+  } catch(e) {}
+
+  // Legacy: also check old tags-only key so existing saves aren't lost
   try {
     const saved = JSON.parse(localStorage.getItem(SK.TAGS) || '{}');
     S.episodes.forEach(ep => {
@@ -85,10 +97,24 @@ function save() {
   localStorage.setItem(SK.WT,      JSON.stringify(S.watchthroughs));
   localStorage.setItem(SK.ACTIVE,  S.activeWT || '');
   localStorage.setItem(SK.FILTERS, JSON.stringify(S.filters));
-  // Save tags keyed by episode id
-  const tags = {};
-  S.episodes.forEach(ep => { if (ep.tags?.length) tags[ep.id] = ep.tags; });
-  localStorage.setItem(SK.TAGS, JSON.stringify(tags));
+
+  // Save all episode edits — only store fields that differ from the original JSON
+  const edits = {};
+  const origMap = {};
+  SHOW_DATA.episodes.forEach(ep => { origMap[ep.id] = ep; });
+  S.episodes.forEach(ep => {
+    const orig = origMap[ep.id];
+    if (!orig) return;
+    const diff = {};
+    const fields = ['title','air_code','release_date','release_year','vitality','quality','notes','tags','timeline_position'];
+    fields.forEach(k => {
+      const epVal   = JSON.stringify(ep[k]   ?? null);
+      const origVal = JSON.stringify(orig[k] ?? null);
+      if (epVal !== origVal) diff[k] = ep[k];
+    });
+    if (Object.keys(diff).length > 0) edits[ep.id] = diff;
+  });
+  localStorage.setItem(SK.EDITS, JSON.stringify(edits));
   flash();
 }
 
@@ -168,15 +194,26 @@ function renderFilters() {
 
   // Tags row — always collapsible, collapsed by default
   if (allTags.length > 0) {
+    const visibleTags = S.tagSearch
+      ? allTags.filter(t => t.includes(S.tagSearch.toLowerCase()))
+      : allTags;
     html += `
       <div class="section-row" style="gap:1rem;align-items:stretch;">
         <div class="panel" style="flex:1;">
           <div class="panel-title" style="display:flex;align-items:center;gap:8px;cursor:pointer;" onclick="toggleTagsExpanded()">
             Tags
+            ${f.tags.length ? `<span style="font-size:10px;color:var(--sw-gold);letter-spacing:0;">${f.tags.length} active</span>` : ''}
             <button class="tag-collapse-btn">${S.tagsExpanded ? '▲ Collapse' : '▼ Show ('+allTags.length+')'}</button>
           </div>
-          ${S.tagsExpanded ? `<div class="filter-chips" style="margin-top:8px;">
-            ${allTags.map(t => `<button class="chip ${f.tags.includes(t)?'active-tag':''}" onclick="event.stopPropagation();toggleF('tags','${esc(t)}')">${esc(t)}</button>`).join('')}
+          ${S.tagsExpanded ? `
+          <input class="form-input" style="margin-top:8px;margin-bottom:8px;font-size:13px;padding:5px 8px;"
+            placeholder="Search tags…" value="${esc(S.tagSearch)}"
+            oninput="S.tagSearch=this.value;renderFilters()"
+            onclick="event.stopPropagation()" />
+          <div class="filter-chips">
+            ${visibleTags.length
+              ? visibleTags.map(t => `<button class="chip ${f.tags.includes(t)?'active-tag':''}" onclick="event.stopPropagation();toggleF('tags','${esc(t)}')">${esc(t)}</button>`).join('')
+              : `<span style="color:var(--sw-muted);font-size:12px;">No tags match</span>`}
           </div>` : ''}
         </div>
       </div>
@@ -396,11 +433,13 @@ function buildEpForm(ep) {
     <div class="form-group">
       <label class="form-label">Tags</label>
       <div class="tag-input-row">
-        <input class="form-input" id="ef_tagInput" placeholder="Add tag…" onkeydown="tagKeydown(event)" />
+        <input class="form-input" id="ef_tagInput" placeholder="New tag…" onkeydown="tagKeydown(event)" oninput="filterEditPool()" />
         <button class="btn" onclick="addTag()">Add</button>
       </div>
       ${pool.length ? `
         <div class="tag-existing-label">Existing tags — click to add:</div>
+        <input class="form-input" id="ef_poolSearch" style="margin-bottom:6px;font-size:13px;padding:5px 8px;"
+          placeholder="Search existing tags…" oninput="filterEditPool()" />
         <div class="tag-existing-pool" id="tagPool">
           ${pool.map(t=>`<button class="tag-existing-pill" onclick="addTagDirect('${esc(t)}')">${esc(t)}</button>`).join('')}
         </div>` : '<div id="tagPool" style="display:none"></div>'}
@@ -420,6 +459,7 @@ function addTag() {
   const inp = gid('ef_tagInput');
   addTagToEp(slugify(inp.value));
   inp.value = '';
+  filterEditPool();
 }
 function addTagToEp(val) {
   if (!val || !S.editingEpId) return;
@@ -435,22 +475,34 @@ function removeTag(tag) {
   ep.tags = (ep.tags||[]).filter(t => t !== tag);
   refreshTagsDisplay();
 }
+
+// Filter the existing-tags pool by the search inputs (new tag input OR dedicated pool search)
+function filterEditPool() {
+  const tagInput   = gid('ef_tagInput');
+  const poolSearch = gid('ef_poolSearch');
+  // Use the pool search field if it exists and has a value, otherwise fall back to the tag input
+  const query = (poolSearch?.value || tagInput?.value || '').toLowerCase().trim();
+  const pool  = gid('tagPool');
+  if (!pool) return;
+  const available = getAllTagsForPool(S.editingEpId);
+  const visible   = query ? available.filter(t => t.includes(query)) : available;
+  if (visible.length) {
+    pool.style.display = '';
+    pool.innerHTML = visible.map(t =>
+      `<button class="tag-existing-pill" onclick="addTagDirect('${esc(t)}')">${esc(t)}</button>`
+    ).join('');
+  } else {
+    pool.innerHTML = `<span style="color:var(--sw-muted);font-size:12px;">${available.length ? 'No tags match' : ''}</span>`;
+  }
+}
+
 function refreshTagsDisplay() {
   const ep    = S.episodes.find(e => e.id === S.editingEpId);
   const tags  = ep?.tags || [];
   gid('tagsDisplay').innerHTML = tags.map(t =>
     `<span class="tag-pill">${esc(t)}<span class="tag-pill-remove" onclick="removeTag('${esc(t)}')">✕</span></span>`
   ).join('');
-  const pool     = gid('tagPool');
-  const available = getAllTagsForPool(S.editingEpId);
-  if (pool) {
-    if (available.length) {
-      pool.style.display = '';
-      pool.innerHTML = available.map(t =>
-        `<button class="tag-existing-pill" onclick="addTagDirect('${esc(t)}')">${esc(t)}</button>`
-      ).join('');
-    } else { pool.style.display = 'none'; }
-  }
+  filterEditPool();  // re-filter pool after any tag change
 }
 
 function saveEp() {
