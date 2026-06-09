@@ -1,4 +1,10 @@
 {
+  "show": {
+    "id": "clone_wars",
+    "title": "The Clone Wars",
+    "color": "#64B4FF",
+    "years": "2008–2020"
+  },
   "episodes": [
     {
       "id": "cw_1",
@@ -6,6 +12,9 @@
       "episode": 1,
       "air_code": "216",
       "title": "Cat and Mouse",
+      "release_date": "2010-02-26",
+      "release_year": 2010,
+      "timeline_position": "22 BBY",
       "vitality": "skippable",
       "quality": "good",
       "notes": "",
@@ -16,10 +25,7 @@
         "admiral-trench",
         "christophsis",
         "bail-organa"
-      ],
-      "release_date": "2010-02-26",
-      "release_year": 2010,
-      "timeline_position": "22 BBY"
+      ]
     },
     {
       "id": "cw_2",
@@ -27,12 +33,21 @@
       "episode": 2,
       "air_code": "116",
       "title": "Hidden Enemy",
+      "release_date": "2008-09-26",
+      "release_year": 2008,
+      "timeline_position": "22 BBY",
       "vitality": "skippable",
       "quality": "good",
       "notes": "",
-      "release_date": "2008-09-26",
-      "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "tags": [
+        "christophsis",
+        "obi-wan-kenobi",
+        "anakin-skywalker",
+        "asajj-ventress",
+        "r2-d2",
+        "captain-rex",
+        "commander-cody"
+      ]
     },
     {
       "id": "cw_T",
@@ -40,15 +55,32 @@
       "episode": "T",
       "air_code": "T",
       "title": "The Clone Wars (Theatrical Release)",
+      "release_date": "2008-08-15",
+      "release_year": 2008,
+      "timeline_position": "22 BBY",
       "vitality": "vital",
       "quality": "bad",
       "notes": "Theatrical film",
       "tags": [
-        "ahsoka"
-      ],
-      "release_date": "2008-08-15",
-      "release_year": 2008,
-      "timeline_position": "22 BBY"
+        "admiral-yularen",
+        "anakin-skywalker",
+        "asajj-ventress",
+        "christophsis",
+        "r2-d2",
+        "obi-wan-kenobi",
+        "ahsoka-tano",
+        "c3-p0",
+        "jabba-the-hutt",
+        "coruscant",
+        "count-dooku",
+        "tatooine",
+        "darth-sidious-(palpatine)",
+        "captain-rex",
+        "commander-cody",
+        "yoda",
+        "ziro-the-hutt",
+        "padmé-amidala"
+      ]
     },
     {
       "id": "cw_3",
@@ -56,12 +88,20 @@
       "episode": 3,
       "air_code": "301",
       "title": "Clone Cadets",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2010-09-17",
       "release_year": 2010,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "vital",
+      "quality": "good",
+      "notes": "",
+      "tags": [
+        "echo",
+        "kamino",
+        "fives",
+        "domino-squad",
+        "99",
+        "commander-gree"
+      ]
     },
     {
       "id": "cw_4",
@@ -69,12 +109,19 @@
       "episode": 4,
       "air_code": "303",
       "title": "Supply Lines",
+      "release_date": "2010-10-01",
+      "release_year": 2010,
+      "timeline_position": "22 BBY",
       "vitality": "skippable",
       "quality": "bad",
       "notes": "",
-      "release_date": "2010-10-01",
-      "release_year": 2010,
-      "timeline_position": "22 BBY"
+      "tags": [
+        "bail-organa",
+        "jar-jar-binks",
+        "ryloth",
+        "toydaria",
+        "cham-syndulla"
+      ]
     },
     {
       "id": "cw_5",
@@ -82,12 +129,18 @@
       "episode": 5,
       "air_code": "101",
       "title": "Ambush",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2008-10-03",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "",
+      "tags": [
+        "asajj-ventress",
+        "count-dooku",
+        "yoda",
+        "toydaria"
+      ]
     },
     {
       "id": "cw_6",
@@ -95,12 +148,22 @@
       "episode": 6,
       "air_code": "102",
       "title": "Rising Malevolence",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2008-10-03",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "vital",
+      "quality": "good",
+      "notes": "",
+      "tags": [
+        "plo-koon",
+        "the-malevolence",
+        "anakin-skywalker",
+        "general-grievous",
+        "ahsoka-tano",
+        "admiral-yularen",
+        "r2-d2",
+        "count-dooku"
+      ]
     },
     {
       "id": "cw_7",
@@ -108,12 +171,21 @@
       "episode": 7,
       "air_code": "103",
       "title": "Shadow of Malevolence",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2008-10-10",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "vital",
+      "quality": "good",
+      "notes": "",
+      "tags": [
+        "admiral-yularen",
+        "anakin-skywalker",
+        "general-grievous",
+        "ahsoka-tano",
+        "plo-koon",
+        "obi-wan-kenobi",
+        "the-malevolence"
+      ]
     },
     {
       "id": "cw_8",
@@ -121,12 +193,24 @@
       "episode": 8,
       "air_code": "104",
       "title": "Destroy Malevolence",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2008-10-17",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "",
+      "tags": [
+        "plo-koon",
+        "obi-wan-kenobi",
+        "general-grievous",
+        "the-malevolence",
+        "anakin-skywalker",
+        "c3-p0",
+        "padmé-amidala",
+        "ahsoka-tano",
+        "admiral-yularen",
+        "r2-d2"
+      ]
     },
     {
       "id": "cw_9",
@@ -134,12 +218,23 @@
       "episode": 9,
       "air_code": "105",
       "title": "Rookies",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2008-10-24",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "",
+      "tags": [
+        "domino-squad",
+        "echo",
+        "fives",
+        "commander-cody",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "captain-rex",
+        "general-grievous",
+        "admiral-yularen"
+      ]
     },
     {
       "id": "cw_10",
@@ -147,12 +242,18 @@
       "episode": 10,
       "air_code": "106",
       "title": "Downfall of a Droid",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2008-10-31",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "skippable",
+      "quality": "bad",
+      "notes": "",
+      "tags": [
+        "general-grievous",
+        "anakin-skywalker",
+        "ahsoka-tano",
+        "r2-d2"
+      ]
     },
     {
       "id": "cw_11",
@@ -160,12 +261,19 @@
       "episode": 11,
       "air_code": "107",
       "title": "Duel of the Droids",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2008-11-07",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "skippable",
+      "quality": "meh",
+      "notes": "",
+      "tags": [
+        "r2-d2",
+        "ahsoka-tano",
+        "anakin-skywalker",
+        "captain-rex",
+        "general-grievous"
+      ]
     },
     {
       "id": "cw_12",
@@ -173,12 +281,19 @@
       "episode": 12,
       "air_code": "108",
       "title": "Bombad Jedi",
-      "vitality": "skippable",
-      "quality": "meh",
-      "notes": "",
       "release_date": "2008-11-14",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "",
+      "tags": [
+        "padmé-amidala",
+        "c3-p0",
+        "jar-jar-binks",
+        "nute-gunray",
+        "commander-gree"
+      ]
     },
     {
       "id": "cw_13",
@@ -186,12 +301,19 @@
       "episode": 13,
       "air_code": "109",
       "title": "Cloak of Darkness",
-      "vitality": "skippable",
-      "quality": "good",
-      "notes": "",
       "release_date": "2008-12-19",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "",
+      "tags": [
+        "nute-gunray",
+        "luminara-unduli",
+        "ahsoka-tano",
+        "commander-gree",
+        "asajj-ventress"
+      ]
     },
     {
       "id": "cw_14",
@@ -199,12 +321,16 @@
       "episode": 14,
       "air_code": "110",
       "title": "Lair of Grievous",
+      "release_date": "2008-12-05",
+      "release_year": 2008,
+      "timeline_position": "22 BBY",
       "vitality": "skippable",
       "quality": "good",
       "notes": "",
-      "release_date": "2008-12-05",
-      "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "tags": [
+        "kit-fisto",
+        "general-grievous"
+      ]
     },
     {
       "id": "cw_15",
@@ -212,12 +338,12 @@
       "episode": 15,
       "air_code": "111",
       "title": "Dooku Captured",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2008-12-12",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_16",
@@ -225,12 +351,12 @@
       "episode": 16,
       "air_code": "112",
       "title": "The Gungan General",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2008-11-14",
       "release_year": 2008,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_17",
@@ -238,12 +364,12 @@
       "episode": 17,
       "air_code": "113",
       "title": "Jedi Crash",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-01-09",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_18",
@@ -251,12 +377,12 @@
       "episode": 18,
       "air_code": "114",
       "title": "Defenders of Peace",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-01-16",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_19",
@@ -264,12 +390,12 @@
       "episode": 19,
       "air_code": "115",
       "title": "Trespass",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-01-23",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_20",
@@ -277,12 +403,12 @@
       "episode": 20,
       "air_code": "117",
       "title": "Blue Shadow Virus",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-03-20",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_21",
@@ -290,12 +416,12 @@
       "episode": 21,
       "air_code": "118",
       "title": "Mystery of a Thousand Moons",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-03-27",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_22",
@@ -303,12 +429,12 @@
       "episode": 22,
       "air_code": "119",
       "title": "Storm over Ryloth",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-04-03",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_23",
@@ -316,12 +442,12 @@
       "episode": 23,
       "air_code": "120",
       "title": "Innocents of Ryloth",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-04-10",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_24",
@@ -329,12 +455,12 @@
       "episode": 24,
       "air_code": "121",
       "title": "Liberty on Ryloth",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-04-17",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_25",
@@ -342,12 +468,12 @@
       "episode": 25,
       "air_code": "201",
       "title": "Holocron Heist",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-10-02",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_26",
@@ -355,12 +481,12 @@
       "episode": 26,
       "air_code": "202",
       "title": "Cargo of Doom",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-10-09",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_27",
@@ -368,12 +494,12 @@
       "episode": 27,
       "air_code": "203",
       "title": "Children of the Force",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-10-16",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_28",
@@ -381,12 +507,12 @@
       "episode": 28,
       "air_code": "217",
       "title": "Bounty Hunters",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-03-05",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_29",
@@ -394,12 +520,12 @@
       "episode": 29,
       "air_code": "218",
       "title": "The Zillo Beast",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-04-02",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_30",
@@ -407,12 +533,12 @@
       "episode": 30,
       "air_code": "219",
       "title": "The Zillo Beast Strikes Back",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-04-09",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_31",
@@ -420,12 +546,12 @@
       "episode": 31,
       "air_code": "204",
       "title": "Senate Spy",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-10-30",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_32",
@@ -433,12 +559,12 @@
       "episode": 32,
       "air_code": "205",
       "title": "Landing at Point Rain",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-11-06",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_33",
@@ -446,12 +572,12 @@
       "episode": 33,
       "air_code": "206",
       "title": "Weapons Factory",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-11-13",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_34",
@@ -459,12 +585,12 @@
       "episode": 34,
       "air_code": "207",
       "title": "Legacy of Terror",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-11-20",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_35",
@@ -472,12 +598,12 @@
       "episode": 35,
       "air_code": "208",
       "title": "Brain Invaders",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-12-04",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_36",
@@ -485,12 +611,12 @@
       "episode": 36,
       "air_code": "209",
       "title": "Grievous Intrigue",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-12-11",
       "release_year": 2009,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_37",
@@ -498,12 +624,12 @@
       "episode": 37,
       "air_code": "210",
       "title": "The Deserter",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-01-01",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_38",
@@ -511,12 +637,12 @@
       "episode": 38,
       "air_code": "211",
       "title": "Lightsaber Lost",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-01-08",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_39",
@@ -524,12 +650,12 @@
       "episode": 39,
       "air_code": "212",
       "title": "The Mandalore Plot",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-01-22",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_40",
@@ -537,12 +663,12 @@
       "episode": 40,
       "air_code": "213",
       "title": "Voyage of Temptation",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-01-29",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_41",
@@ -550,12 +676,12 @@
       "episode": 41,
       "air_code": "214",
       "title": "Duchess of Mandalore",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-02-05",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_42",
@@ -563,12 +689,12 @@
       "episode": 42,
       "air_code": "220",
       "title": "Death Trap",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-04-23",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_43",
@@ -576,12 +702,12 @@
       "episode": 43,
       "air_code": "221",
       "title": "R2 Come Home",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-04-30",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_44",
@@ -589,12 +715,12 @@
       "episode": 44,
       "air_code": "222",
       "title": "Lethal Trackdown",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-05-07",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_45",
@@ -602,12 +728,12 @@
       "episode": 45,
       "air_code": "305",
       "title": "Corruption",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-10-15",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_46",
@@ -615,12 +741,12 @@
       "episode": 46,
       "air_code": "306",
       "title": "The Academy",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-10-22",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_47",
@@ -628,12 +754,12 @@
       "episode": 47,
       "air_code": "307",
       "title": "Assassin",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-10-29",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_48",
@@ -641,12 +767,12 @@
       "episode": 48,
       "air_code": "302",
       "title": "ARC Troopers",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-09-24",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_49",
@@ -654,12 +780,12 @@
       "episode": 49,
       "air_code": "304",
       "title": "Sphere of Influence",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-10-08",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_50",
@@ -667,12 +793,12 @@
       "episode": 50,
       "air_code": "308",
       "title": "Evil Plans",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-11-05",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_51",
@@ -680,12 +806,12 @@
       "episode": 51,
       "air_code": "122",
       "title": "Hostage Crisis",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2009-03-20",
       "release_year": 2009,
-      "timeline_position": "22 BBY"
+      "timeline_position": "22 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_52",
@@ -693,12 +819,12 @@
       "episode": 52,
       "air_code": "309",
       "title": "Hunt for Ziro",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-11-12",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_53",
@@ -706,12 +832,12 @@
       "episode": 53,
       "air_code": "310",
       "title": "Heroes on Both Sides",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-11-19",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_54",
@@ -719,12 +845,12 @@
       "episode": 54,
       "air_code": "311",
       "title": "Pursuit of Peace",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-11-19",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_55",
@@ -732,12 +858,12 @@
       "episode": 55,
       "air_code": "215",
       "title": "Senate Murders",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2010-02-19",
       "release_year": 2010,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_56",
@@ -745,12 +871,12 @@
       "episode": 56,
       "air_code": "312",
       "title": "Nightsisters",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-01-07",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_57",
@@ -758,12 +884,12 @@
       "episode": 57,
       "air_code": "313",
       "title": "Monster",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-01-14",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_58",
@@ -771,12 +897,12 @@
       "episode": 58,
       "air_code": "314",
       "title": "Witches of the Mist",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-01-21",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_59",
@@ -784,12 +910,12 @@
       "episode": 59,
       "air_code": "315",
       "title": "Overlords",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-01-28",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_60",
@@ -797,12 +923,12 @@
       "episode": 60,
       "air_code": "316",
       "title": "Altar of Mortis",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-02-04",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_61",
@@ -810,12 +936,12 @@
       "episode": 61,
       "air_code": "317",
       "title": "Ghosts of Mortis",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-02-11",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_62",
@@ -823,12 +949,12 @@
       "episode": 62,
       "air_code": "318",
       "title": "The Citadel",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-02-18",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_63",
@@ -836,12 +962,12 @@
       "episode": 63,
       "air_code": "319",
       "title": "Counter Attack",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-02-25",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_64",
@@ -849,12 +975,12 @@
       "episode": 64,
       "air_code": "320",
       "title": "Citadel Rescue",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-03-04",
       "release_year": 2011,
-      "timeline_position": "21 BBY"
+      "timeline_position": "21 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_65",
@@ -862,12 +988,12 @@
       "episode": 65,
       "air_code": "321",
       "title": "Padawan Lost",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-03-25",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_66",
@@ -875,12 +1001,12 @@
       "episode": 66,
       "air_code": "322",
       "title": "Wookiee Hunt",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-04-01",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_67",
@@ -888,12 +1014,12 @@
       "episode": 67,
       "air_code": "401",
       "title": "Water War",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-09-16",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_68",
@@ -901,12 +1027,12 @@
       "episode": 68,
       "air_code": "402",
       "title": "Gungan Attack",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-09-16",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_69",
@@ -914,12 +1040,12 @@
       "episode": 69,
       "air_code": "403",
       "title": "Prisoners",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-09-23",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_70",
@@ -927,12 +1053,12 @@
       "episode": 70,
       "air_code": "404",
       "title": "Shadow Warrior",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-09-30",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_71",
@@ -940,12 +1066,12 @@
       "episode": 71,
       "air_code": "405",
       "title": "Mercy Mission",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-10-07",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_72",
@@ -953,12 +1079,12 @@
       "episode": 72,
       "air_code": "406",
       "title": "Nomad Droids",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-10-14",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_73",
@@ -966,12 +1092,12 @@
       "episode": 73,
       "air_code": "407",
       "title": "Darkness on Umbara",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-10-28",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_74",
@@ -979,12 +1105,12 @@
       "episode": 74,
       "air_code": "408",
       "title": "The General",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-11-04",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_75",
@@ -992,12 +1118,12 @@
       "episode": 75,
       "air_code": "409",
       "title": "Plan of Dissent",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-11-11",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_76",
@@ -1005,12 +1131,12 @@
       "episode": 76,
       "air_code": "410",
       "title": "Carnage of Krell",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-11-18",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_77",
@@ -1018,12 +1144,12 @@
       "episode": 77,
       "air_code": "411",
       "title": "Kidnapped",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-11-25",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_78",
@@ -1031,12 +1157,12 @@
       "episode": 78,
       "air_code": "412",
       "title": "Slaves of the Republic",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-12-02",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_79",
@@ -1044,12 +1170,12 @@
       "episode": 79,
       "air_code": "413",
       "title": "Escape from Kadavo",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2011-12-09",
       "release_year": 2011,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_80",
@@ -1057,12 +1183,12 @@
       "episode": 80,
       "air_code": "414",
       "title": "A Friend In Need",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-01-13",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_81",
@@ -1070,12 +1196,12 @@
       "episode": 81,
       "air_code": "415",
       "title": "Deception",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-01-20",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_82",
@@ -1083,12 +1209,12 @@
       "episode": 82,
       "air_code": "416",
       "title": "Friends and Enemies",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-01-27",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_83",
@@ -1096,12 +1222,12 @@
       "episode": 83,
       "air_code": "417",
       "title": "The Box",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-02-03",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_84",
@@ -1109,12 +1235,12 @@
       "episode": 84,
       "air_code": "418",
       "title": "Crisis on Naboo",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-02-10",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_85",
@@ -1122,12 +1248,12 @@
       "episode": 85,
       "air_code": "419",
       "title": "Massacre",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-02-24",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_86",
@@ -1135,12 +1261,12 @@
       "episode": 86,
       "air_code": "420",
       "title": "Bounty",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-03-02",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_87",
@@ -1148,12 +1274,12 @@
       "episode": 87,
       "air_code": "421",
       "title": "Brothers",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-03-09",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_88",
@@ -1161,12 +1287,12 @@
       "episode": 88,
       "air_code": "422",
       "title": "Revenge",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-03-16",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_89",
@@ -1174,12 +1300,12 @@
       "episode": 89,
       "air_code": "502",
       "title": "A War on Two Fronts",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-10-06",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_90",
@@ -1187,12 +1313,12 @@
       "episode": 90,
       "air_code": "503",
       "title": "Front Runners",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-10-13",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_91",
@@ -1200,12 +1326,12 @@
       "episode": 91,
       "air_code": "504",
       "title": "The Soft War",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-10-20",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_92",
@@ -1213,12 +1339,12 @@
       "episode": 92,
       "air_code": "505",
       "title": "Tipping Points",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-10-27",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_93",
@@ -1226,12 +1352,12 @@
       "episode": 93,
       "air_code": "506",
       "title": "The Gathering",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-11-03",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_94",
@@ -1239,12 +1365,12 @@
       "episode": 94,
       "air_code": "507",
       "title": "A Test of Strength",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-11-10",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_95",
@@ -1252,12 +1378,12 @@
       "episode": 95,
       "air_code": "508",
       "title": "Bound for Rescue",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-11-17",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_96",
@@ -1265,12 +1391,12 @@
       "episode": 96,
       "air_code": "509",
       "title": "A Necessary Bond",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-11-24",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_97",
@@ -1278,12 +1404,12 @@
       "episode": 97,
       "air_code": "510",
       "title": "Secret Weapons",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-12-01",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_98",
@@ -1291,12 +1417,12 @@
       "episode": 98,
       "air_code": "511",
       "title": "A Sunny Day in the Void",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-12-08",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_99",
@@ -1304,12 +1430,12 @@
       "episode": 99,
       "air_code": "512",
       "title": "Missing in Action",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-12-15",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_100",
@@ -1317,12 +1443,12 @@
       "episode": 100,
       "air_code": "513",
       "title": "Point of No Return",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2013-01-05",
       "release_year": 2013,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_101",
@@ -1330,12 +1456,12 @@
       "episode": 101,
       "air_code": "501",
       "title": "Revival",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2012-09-29",
       "release_year": 2012,
-      "timeline_position": "20 BBY"
+      "timeline_position": "20 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_102",
@@ -1343,12 +1469,12 @@
       "episode": 102,
       "air_code": "514",
       "title": "Eminence",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2013-01-12",
       "release_year": 2013,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_103",
@@ -1356,12 +1482,12 @@
       "episode": 103,
       "air_code": "515",
       "title": "Shades of Reason",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2013-01-19",
       "release_year": 2013,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_104",
@@ -1369,12 +1495,12 @@
       "episode": 104,
       "air_code": "516",
       "title": "The Lawless",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2013-01-26",
       "release_year": 2013,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_105",
@@ -1382,12 +1508,12 @@
       "episode": 105,
       "air_code": "517",
       "title": "Sabotage",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2013-02-02",
       "release_year": 2013,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_106",
@@ -1395,12 +1521,12 @@
       "episode": 106,
       "air_code": "518",
       "title": "The Jedi Who Knew Too Much",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2013-02-09",
       "release_year": 2013,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_107",
@@ -1408,12 +1534,12 @@
       "episode": 107,
       "air_code": "519",
       "title": "To Catch a Jedi",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2013-02-16",
       "release_year": 2013,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_108",
@@ -1421,12 +1547,12 @@
       "episode": 108,
       "air_code": "520",
       "title": "The Wrong Jedi",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2013-03-02",
       "release_year": 2013,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_109",
@@ -1434,12 +1560,12 @@
       "episode": 109,
       "air_code": "601",
       "title": "The Unknown",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_110",
@@ -1447,12 +1573,12 @@
       "episode": 110,
       "air_code": "602",
       "title": "Conspiracy",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_111",
@@ -1460,12 +1586,12 @@
       "episode": 111,
       "air_code": "603",
       "title": "Fugitive",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_112",
@@ -1473,12 +1599,12 @@
       "episode": 112,
       "air_code": "604",
       "title": "Orders",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_113",
@@ -1486,12 +1612,12 @@
       "episode": 113,
       "air_code": "605",
       "title": "An Old Friend",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_114",
@@ -1499,12 +1625,12 @@
       "episode": 114,
       "air_code": "606",
       "title": "The Rise of Clovis",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_115",
@@ -1512,12 +1638,12 @@
       "episode": 115,
       "air_code": "607",
       "title": "Crisis at the Heart",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_116",
@@ -1525,12 +1651,12 @@
       "episode": 116,
       "air_code": "608",
       "title": "The Disappeared",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_117",
@@ -1538,12 +1664,12 @@
       "episode": 117,
       "air_code": "609",
       "title": "The Disappeared: Pt. II",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_118",
@@ -1551,12 +1677,12 @@
       "episode": 118,
       "air_code": "610",
       "title": "The Lost One",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_119",
@@ -1564,12 +1690,12 @@
       "episode": 119,
       "air_code": "611",
       "title": "Voices",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_120",
@@ -1577,12 +1703,12 @@
       "episode": 120,
       "air_code": "612",
       "title": "Destiny",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_121",
@@ -1590,12 +1716,12 @@
       "episode": 121,
       "air_code": "613",
       "title": "Sacrifice",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2014-03-07",
       "release_year": 2014,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_122",
@@ -1603,12 +1729,12 @@
       "episode": 122,
       "air_code": "705",
       "title": "Gone with a Trace",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-03-20",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_123",
@@ -1616,12 +1742,12 @@
       "episode": 123,
       "air_code": "706",
       "title": "Deal No Deal",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-03-27",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_124",
@@ -1629,12 +1755,12 @@
       "episode": 124,
       "air_code": "707",
       "title": "Dangerous Debt",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-04-03",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_125",
@@ -1642,12 +1768,12 @@
       "episode": 125,
       "air_code": "708",
       "title": "Together Again",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-04-10",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_126",
@@ -1655,12 +1781,12 @@
       "episode": 126,
       "air_code": "701",
       "title": "The Bad Batch",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-02-21",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_127",
@@ -1668,12 +1794,12 @@
       "episode": 127,
       "air_code": "702",
       "title": "A Distant Echo",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-02-28",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_128",
@@ -1681,12 +1807,12 @@
       "episode": 128,
       "air_code": "703",
       "title": "On the Wings of Keeradaks",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-03-06",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_129",
@@ -1694,12 +1820,12 @@
       "episode": 129,
       "air_code": "704",
       "title": "Unfinished Business",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-03-13",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_130",
@@ -1707,12 +1833,12 @@
       "episode": 130,
       "air_code": "709",
       "title": "Old Friends Not Forgotten",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-04-17",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_131",
@@ -1720,12 +1846,12 @@
       "episode": 131,
       "air_code": "710",
       "title": "The Phantom Apprentice",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-04-24",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_132",
@@ -1733,12 +1859,12 @@
       "episode": 132,
       "air_code": "711",
       "title": "Shattered",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-05-01",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     },
     {
       "id": "cw_133",
@@ -1746,12 +1872,12 @@
       "episode": 133,
       "air_code": "712",
       "title": "Victory and Death",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
       "release_date": "2020-05-04",
       "release_year": 2020,
-      "timeline_position": "19 BBY"
+      "timeline_position": "19 BBY",
+      "vitality": null,
+      "quality": null,
+      "notes": ""
     }
   ]
 }
