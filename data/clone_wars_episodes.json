@@ -100,8 +100,7 @@
         "fives",
         "domino-squad",
         "99",
-        "commander-gree",
-        "shaak-ti"
+        "commander-gree"
       ]
     },
     {
@@ -641,7 +640,8 @@
         "obi-wan-kenobi",
         "embo",
         "sugi",
-        "hondo-ohnaka"
+        "hondo-ohnaka",
+        "felucia"
       ]
     },
     {
@@ -655,7 +655,7 @@
       "timeline_position": "21 BBY",
       "vitality": "vital",
       "quality": "good",
-      "notes": "zilo beast arc",
+      "notes": "zillo beast arc",
       "tags": [
         "mace-windu",
         "darth-sidious-(palpatine)",
@@ -715,7 +715,8 @@
         "r2-d2",
         "c3-p0",
         "lott-dod",
-        "poggle-the-lesser"
+        "poggle-the-lesser",
+        "the-senate"
       ]
     },
     {
@@ -847,7 +848,8 @@
         "general-grievous",
         "captain-rex",
         "obi-wan-kenobi",
-        "commander-cody"
+        "commander-cody",
+        "hardcase"
       ]
     },
     {
@@ -937,7 +939,8 @@
         "coruscant",
         "obi-wan-kenobi",
         "darth-sidious-(palpatine)",
-        "count-dooku"
+        "count-dooku",
+        "the-senate"
       ]
     },
     {
@@ -980,7 +983,8 @@
         "aurra-sing",
         "bossk",
         "ahsoka-tano",
-        "kit-fisto"
+        "kit-fisto",
+        "plo-koon"
       ]
     },
     {
@@ -1104,9 +1108,20 @@
       "release_date": "2010-10-08",
       "release_year": 2010,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "bad",
+      "notes": "",
+      "tags": [
+        "pantora",
+        "senator-chuchi",
+        "lott-dod",
+        "coruscant",
+        "padmé-amidala",
+        "ahsoka-tano",
+        "tatooine",
+        "jabba-the-hutt",
+        "the-senate"
+      ]
     },
     {
       "id": "cw_50",
@@ -1117,9 +1132,18 @@
       "release_date": "2010-11-05",
       "release_year": 2010,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "bad",
+      "notes": "Ziro the Hutt Escape Arc",
+      "tags": [
+        "c3-p0",
+        "cad-bane",
+        "r2-d2",
+        "anakin-skywalker",
+        "padmé-amidala",
+        "tatooine",
+        "jabba-the-hutt"
+      ]
     },
     {
       "id": "cw_51",
@@ -1130,9 +1154,22 @@
       "release_date": "2009-03-20",
       "release_year": 2009,
       "timeline_position": "22 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "meh",
+      "notes": "Ziro the Hutt Escape Arc",
+      "tags": [
+        "coruscant",
+        "cad-bane",
+        "aurra-sing",
+        "anakin-skywalker",
+        "padmé-amidala",
+        "c3-p0",
+        "bail-organa",
+        "orn-free-taa",
+        "darth-sidious-(palpatine)",
+        "ziro-the-hutt",
+        "the-senate"
+      ]
     },
     {
       "id": "cw_52",
@@ -1143,9 +1180,17 @@
       "release_date": "2010-11-12",
       "release_year": 2010,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "meh",
+      "notes": "Ziro the Hutt Escape Arc",
+      "tags": [
+        "obi-wan-kenobi",
+        "ziro-the-hutt",
+        "commander-cody",
+        "cad-bane",
+        "jabba-the-hutt",
+        "nal-hutta"
+      ]
     },
     {
       "id": "cw_53",
@@ -1156,9 +1201,24 @@
       "release_date": "2010-11-19",
       "release_year": 2010,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "senate war spending arc",
+      "tags": [
+        "coruscant",
+        "bail-organa",
+        "padmé-amidala",
+        "lott-dod",
+        "the-senate",
+        "ahsoka-tano",
+        "senator-halle-burtoni",
+        "general-grievous",
+        "lux-bonteri",
+        "count-dooku",
+        "darth-sidious-(palpatine)",
+        "orn-free-taa",
+        "mon-mothma"
+      ]
     },
     {
       "id": "cw_54",
@@ -1169,9 +1229,21 @@
       "release_date": "2010-11-19",
       "release_year": 2010,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "senate war spending arc",
+      "tags": [
+        "senator-onaconda-farr",
+        "senator-halle-burtoni",
+        "the-senate",
+        "coruscant",
+        "darth-sidious-(palpatine)",
+        "padmé-amidala",
+        "bail-organa",
+        "orn-free-taa",
+        "count-dooku",
+        "mon-mothma"
+      ]
     },
     {
       "id": "cw_55",
@@ -1182,11 +1254,20 @@
       "release_date": "2010-02-19",
       "release_year": 2010,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": "",
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "senate war spending arc",
       "tags": [
-        "orn-free-taa"
+        "orn-free-taa",
+        "senator-onaconda-farr",
+        "senator-halle-burtoni",
+        "padmé-amidala",
+        "bail-organa",
+        "the-senate",
+        "coruscant",
+        "c3-p0",
+        "mon-mothma",
+        "darth-sidious-(palpatine)"
       ]
     },
     {
@@ -1198,9 +1279,20 @@
       "release_date": "2011-01-07",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "Ventress' Revenge Arc",
+      "tags": [
+        "asajj-ventress",
+        "count-dooku",
+        "darth-sidious-(palpatine)",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "serenno",
+        "dathomir",
+        "the-nightsisters",
+        "mother-talzin"
+      ]
     },
     {
       "id": "cw_57",
@@ -1211,9 +1303,18 @@
       "release_date": "2011-01-14",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "Ventress' Revenge Arc",
+      "tags": [
+        "mother-talzin",
+        "dathomir",
+        "count-dooku",
+        "asajj-ventress",
+        "savage-opress",
+        "the-nightsisters",
+        "serenno"
+      ]
     },
     {
       "id": "cw_58",
@@ -1224,9 +1325,21 @@
       "release_date": "2011-01-21",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "Ventress' Revenge Arc",
+      "tags": [
+        "savage-opress",
+        "count-dooku",
+        "serenno",
+        "obi-wan-kenobi",
+        "anakin-skywalker",
+        "dathomir",
+        "mother-talzin",
+        "the-nightsisters",
+        "toydaria",
+        "maul"
+      ]
     },
     {
       "id": "cw_59",
@@ -1237,9 +1350,16 @@
       "release_date": "2011-01-28",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "Gods of Mortis Arc",
+      "tags": [
+        "anakin-skywalker",
+        "ahsoka-tano",
+        "obi-wan-kenobi",
+        "mortis",
+        "qui-gon-jinn"
+      ]
     },
     {
       "id": "cw_60",
@@ -1250,9 +1370,15 @@
       "release_date": "2011-02-04",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "Gods of Mortis Arc",
+      "tags": [
+        "mortis",
+        "ahsoka-tano",
+        "anakin-skywalker",
+        "obi-wan-kenobi"
+      ]
     },
     {
       "id": "cw_61",
@@ -1263,9 +1389,17 @@
       "release_date": "2011-02-11",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "Gods of Mortis Arc",
+      "tags": [
+        "ahsoka-tano",
+        "mortis",
+        "obi-wan-kenobi",
+        "anakin-skywalker",
+        "qui-gon-jinn",
+        "captain-rex"
+      ]
     },
     {
       "id": "cw_62",
@@ -1276,9 +1410,25 @@
       "release_date": "2011-02-18",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "good",
+      "notes": "the citadel escape arc",
+      "tags": [
+        "even-piell",
+        "coruscant",
+        "the-citadel",
+        "plo-koon",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "ahsoka-tano",
+        "r2-d2",
+        "c3-p0",
+        "commander-cody",
+        "captain-rex",
+        "fives",
+        "echo",
+        "wilhuff-tarkin"
+      ]
     },
     {
       "id": "cw_63",
@@ -1289,9 +1439,23 @@
       "release_date": "2011-02-25",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "good",
+      "notes": "the citadel escape arc",
+      "tags": [
+        "even-piell",
+        "the-citadel",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "ahsoka-tano",
+        "r2-d2",
+        "commander-cody",
+        "captain-rex",
+        "fives",
+        "echo",
+        "wilhuff-tarkin",
+        "count-dooku"
+      ]
     },
     {
       "id": "cw_64",
@@ -1302,9 +1466,26 @@
       "release_date": "2011-03-04",
       "release_year": 2011,
       "timeline_position": "21 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "good",
+      "notes": "the citadel escape arc",
+      "tags": [
+        "even-piell",
+        "the-citadel",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "ahsoka-tano",
+        "r2-d2",
+        "commander-cody",
+        "captain-rex",
+        "fives",
+        "wilhuff-tarkin",
+        "count-dooku",
+        "plo-koon",
+        "yoda",
+        "mace-windu",
+        "coruscant"
+      ]
     },
     {
       "id": "cw_65",
@@ -1315,9 +1496,17 @@
       "release_date": "2011-03-25",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "trandoshan hunt arc",
+      "tags": [
+        "plo-koon",
+        "ahsoka-tano",
+        "anakin-skywalker",
+        "captain-rex",
+        "trandosha",
+        "felucia"
+      ]
     },
     {
       "id": "cw_66",
@@ -1328,9 +1517,16 @@
       "release_date": "2011-04-01",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "trandoshan hunt arc",
+      "tags": [
+        "ahsoka-tano",
+        "anakin-skywalker",
+        "trandosha",
+        "chewbacca",
+        "sugi"
+      ]
     },
     {
       "id": "cw_67",
@@ -1341,9 +1537,19 @@
       "release_date": "2011-09-16",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "mon cala arc",
+      "tags": [
+        "prince-lee-char",
+        "mon-cala",
+        "padmé-amidala",
+        "anakin-skywalker",
+        "admiral-ackbar",
+        "kit-fisto",
+        "ahsoka-tano",
+        "captain-rex"
+      ]
     },
     {
       "id": "cw_68",
@@ -1354,9 +1560,25 @@
       "release_date": "2011-09-16",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "mon cala arc",
+      "tags": [
+        "mon-cala",
+        "prince-lee-char",
+        "admiral-ackbar",
+        "padmé-amidala",
+        "anakin-skywalker",
+        "kit-fisto",
+        "ahsoka-tano",
+        "yoda",
+        "mace-windu",
+        "naboo",
+        "jar-jar-binks",
+        "count-dooku",
+        "boss-lyonie",
+        "roos-tarpals"
+      ]
     },
     {
       "id": "cw_69",
@@ -1367,9 +1589,19 @@
       "release_date": "2011-09-23",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "mon cala arc",
+      "tags": [
+        "prince-lee-char",
+        "ahsoka-tano",
+        "mon-cala",
+        "jar-jar-binks",
+        "padmé-amidala",
+        "anakin-skywalker",
+        "kit-fisto",
+        "admiral-ackbar"
+      ]
     },
     {
       "id": "cw_70",
@@ -1380,9 +1612,19 @@
       "release_date": "2011-09-30",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "good",
+      "notes": "",
+      "tags": [
+        "anakin-skywalker",
+        "padmé-amidala",
+        "jar-jar-binks",
+        "naboo",
+        "count-dooku",
+        "general-grievous",
+        "boss-lyonie",
+        "roos-tarpals"
+      ]
     },
     {
       "id": "cw_71",
@@ -1393,9 +1635,14 @@
       "release_date": "2011-10-07",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "bad",
+      "notes": "artoo and threepio's arc",
+      "tags": [
+        "commander-wolffe",
+        "c3-p0",
+        "r2-d2"
+      ]
     },
     {
       "id": "cw_72",
@@ -1406,9 +1653,17 @@
       "release_date": "2011-10-14",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "bad",
+      "notes": "artoo and threepio's arc",
+      "tags": [
+        "r2-d2",
+        "c3-p0",
+        "adi-gallia",
+        "general-grievous",
+        "plo-koon",
+        "commander-wolffe"
+      ]
     },
     {
       "id": "cw_73",
@@ -1419,9 +1674,18 @@
       "release_date": "2011-10-28",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "Umbara arc",
+      "tags": [
+        "pong-krell",
+        "fives",
+        "captain-rex",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "umbara",
+        "hardcase"
+      ]
     },
     {
       "id": "cw_74",
@@ -1432,9 +1696,17 @@
       "release_date": "2011-11-04",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "Umbara Arc",
+      "tags": [
+        "umbara",
+        "pong-krell",
+        "captain-rex",
+        "obi-wan-kenobi",
+        "fives",
+        "hardcase"
+      ]
     },
     {
       "id": "cw_75",
@@ -1445,9 +1717,16 @@
       "release_date": "2011-11-11",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "Umbara Arc",
+      "tags": [
+        "umbara",
+        "pong-krell",
+        "captain-rex",
+        "fives",
+        "hardcase"
+      ]
     },
     {
       "id": "cw_76",
@@ -1458,9 +1737,16 @@
       "release_date": "2011-11-18",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "Umbara Arc",
+      "tags": [
+        "pong-krell",
+        "captain-rex",
+        "fives",
+        "umbara",
+        "waxer-and-boil"
+      ]
     },
     {
       "id": "cw_77",
@@ -1471,9 +1757,20 @@
       "release_date": "2011-11-25",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "Zygerrian Slavers Arc",
+      "tags": [
+        "kiros",
+        "obi-wan-kenobi",
+        "anakin-skywalker",
+        "count-dooku",
+        "ahsoka-tano",
+        "captain-rex",
+        "waxer-and-boil",
+        "yoda",
+        "admiral-yularen"
+      ]
     },
     {
       "id": "cw_78",
@@ -1484,9 +1781,17 @@
       "release_date": "2011-12-02",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "zygerrian slavers arc",
+      "tags": [
+        "zygerria",
+        "anakin-skywalker",
+        "ahsoka-tano",
+        "captain-rex",
+        "obi-wan-kenobi",
+        "r2-d2"
+      ]
     },
     {
       "id": "cw_79",
@@ -1497,9 +1802,19 @@
       "release_date": "2011-12-09",
       "release_year": 2011,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "zygerrian slavers arc",
+      "tags": [
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "ahsoka-tano",
+        "zygerria",
+        "count-dooku",
+        "darth-sidious-(palpatine)",
+        "r2-d2",
+        "plo-koon"
+      ]
     },
     {
       "id": "cw_80",
@@ -1510,9 +1825,25 @@
       "release_date": "2012-01-13",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "",
+      "tags": [
+        "lux-bonteri",
+        "ahsoka-tano",
+        "death-watch",
+        "mandalore",
+        "mon-mothma",
+        "bail-organa",
+        "padmé-amidala",
+        "the-senate",
+        "duchess-satine-kryze",
+        "anakin-skywalker",
+        "r2-d2",
+        "bo-katan-kryze",
+        "pre-vizsla",
+        "darksaber"
+      ]
     },
     {
       "id": "cw_81",
@@ -1523,9 +1854,20 @@
       "release_date": "2012-01-20",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "Palpatine's Assassination Attempt Arc",
+      "tags": [
+        "moralo-eval",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "ahsoka-tano",
+        "yoda",
+        "mace-windu",
+        "cad-bane",
+        "boba-fett",
+        "bossk"
+      ]
     },
     {
       "id": "cw_82",
@@ -1536,9 +1878,20 @@
       "release_date": "2012-01-27",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "Palpatine's Assassination Attempt Arc",
+      "tags": [
+        "obi-wan-kenobi",
+        "cad-bane",
+        "moralo-eval",
+        "count-dooku",
+        "anakin-skywalker",
+        "nal-hutta",
+        "darth-sidious-(palpatine)",
+        "ahsoka-tano",
+        "captain-rex"
+      ]
     },
     {
       "id": "cw_83",
@@ -1549,9 +1902,19 @@
       "release_date": "2012-02-03",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "Palpatine's Assassination Attempt Arc",
+      "tags": [
+        "serenno",
+        "count-dooku",
+        "obi-wan-kenobi",
+        "cad-bane",
+        "moralo-eval",
+        "anakin-skywalker",
+        "yoda",
+        "embo"
+      ]
     },
     {
       "id": "cw_84",
@@ -1562,9 +1925,22 @@
       "release_date": "2012-02-10",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "great",
+      "notes": "Palpatine's Assassination Attempt Arc",
+      "tags": [
+        "mace-windu",
+        "naboo",
+        "anakin-skywalker",
+        "yoda",
+        "darth-sidious-(palpatine)",
+        "cad-bane",
+        "obi-wan-kenobi",
+        "moralo-eval",
+        "count-dooku",
+        "padmé-amidala",
+        "embo"
+      ]
     },
     {
       "id": "cw_85",
@@ -1575,9 +1951,17 @@
       "release_date": "2012-02-24",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "Tales of the Empire Episode 1: The Path of Fear Takes place after this episode",
+      "tags": [
+        "dathomir",
+        "the-nightsisters",
+        "asajj-ventress",
+        "mother-talzin",
+        "count-dooku",
+        "general-grievous"
+      ]
     },
     {
       "id": "cw_86",
@@ -1588,9 +1972,15 @@
       "release_date": "2012-03-02",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "Watch Tales of the Empire Episode 1: The Path of Fear Takes before this episode",
+      "tags": [
+        "asajj-ventress",
+        "bossk",
+        "tatooine",
+        "boba-fett"
+      ]
     },
     {
       "id": "cw_87",
@@ -1601,9 +1991,21 @@
       "release_date": "2012-03-09",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "good",
+      "notes": "Maul's Return Arc",
+      "tags": [
+        "count-dooku",
+        "general-grievous",
+        "savage-opress",
+        "mother-talzin",
+        "asajj-ventress",
+        "anakin-skywalker",
+        "ahsoka-tano",
+        "maul",
+        "obi-wan-kenobi",
+        "yoda"
+      ]
     },
     {
       "id": "cw_88",
@@ -1614,9 +2016,18 @@
       "release_date": "2012-03-16",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "vital",
+      "quality": "great",
+      "notes": "Maul's Return Arc",
+      "tags": [
+        "dathomir",
+        "mother-talzin",
+        "savage-opress",
+        "maul",
+        "asajj-ventress",
+        "obi-wan-kenobi",
+        "felucia"
+      ]
     },
     {
       "id": "cw_89",
@@ -1627,9 +2038,21 @@
       "release_date": "2012-10-06",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "meh",
+      "notes": "Onderon Arc",
+      "tags": [
+        "onderon",
+        "lux-bonteri",
+        "saw-gerrera",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "ahsoka-tano",
+        "yoda",
+        "jedi-council",
+        "steela-gerrera",
+        "captain-rex"
+      ]
     },
     {
       "id": "cw_90",
@@ -1640,9 +2063,19 @@
       "release_date": "2012-10-13",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "Onderon Arc",
+      "tags": [
+        "onderon",
+        "ahsoka-tano",
+        "lux-bonteri",
+        "saw-gerrera",
+        "steela-gerrera",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "captain-rex"
+      ]
     },
     {
       "id": "cw_91",
@@ -1653,9 +2086,16 @@
       "release_date": "2012-10-20",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "Onderon Arc",
+      "tags": [
+        "onderon",
+        "lux-bonteri",
+        "saw-gerrera",
+        "steela-gerrera",
+        "ahsoka-tano"
+      ]
     },
     {
       "id": "cw_92",
@@ -1666,9 +2106,19 @@
       "release_date": "2012-10-27",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
-      "notes": ""
+      "vitality": "skippable",
+      "quality": "good",
+      "notes": "Onderon Arc",
+      "tags": [
+        "onderon",
+        "hondo-ohnaka",
+        "anakin-skywalker",
+        "obi-wan-kenobi",
+        "saw-gerrera",
+        "steela-gerrera",
+        "lux-bonteri",
+        "ahsoka-tano"
+      ]
     },
     {
       "id": "cw_93",
@@ -1679,8 +2129,8 @@
       "release_date": "2012-11-03",
       "release_year": 2012,
       "timeline_position": "20 BBY",
-      "vitality": null,
-      "quality": null,
+      "vitality": "skippable",
+      "quality": "meh",
       "notes": ""
     },
     {
@@ -1785,7 +2235,15 @@
       "timeline_position": "20 BBY",
       "vitality": null,
       "quality": null,
-      "notes": ""
+      "notes": "",
+      "tags": [
+        "adi-gallia",
+        "maul",
+        "savage-opress",
+        "obi-wan-kenobi",
+        "hondo-ohnaka",
+        "darth-sidious-(palpatine)"
+      ]
     },
     {
       "id": "cw_102",
