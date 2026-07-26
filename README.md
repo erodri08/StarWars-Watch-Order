@@ -1,15 +1,14 @@
 # Star Wars Watchlist Maker
 
-A HTML site that allows users to create and track a custom watch order for all Star Wars content.
+A site for building and tracking a custom Star Wars watch order.
+To access, open [Star Wars Watch Order](https://erodri08.github.io/StarWars-Watch-Order/) in your browser
 
-## Access
 
-- Open [Star Wars Watch Order](https://erodri08.github.io/StarWars-Watch-Order/) in your browser
 ## Pages
 
-| Page | URL |
+| Page | File |
 |---|---|
-| Main List | `index.html` |
+| Main List (All Star Wars Content) | `index.html` |
 | The Clone Wars | `cw.html` |
 | Star Wars Rebels | `rebels.html` |
 | Star Wars Resistance | `resistance.html` |
@@ -18,71 +17,42 @@ A HTML site that allows users to create and track a custom watch order for all S
 
 ## Features
 
-### Main List
-- Browse all Star Wars content (movies, TV, games) in chronological or release order, or drag-and-drop into a **custom order**
-- In custom order mode, select multiple items with Ctrl/Cmd+click and move them together with ▲ ▼ buttons
-- Filter by vitality (Vital / Non-Essential), type, quality (Great / Good / Meh / Bad), era (George Lucas vs. post-George), and custom tags
-- Add custom **tags** to any entry via the Edit button — tags are invisible in list view but become filterable in the Tags filter panel
-- Add new entries or edit existing ones via the Edit button
-- Hide individual entries from your watchthrough using the Hide button — hidden items appear in a collapsed section at the bottom and can be restored
+- Browse chronologically, by release date, or in a **custom drag-and-drop order**
+- Filter by vitality, quality, type, era, and **tags** — every entry on every page can be tagged
+- Add, edit, or delete entries with the **Edit** button. 
+- Hide entries from a watchthrough without deleting them
+- Create named watchthroughs per page and track watched progress
 
-### Show Episode Lists (Clone Wars, Rebels, Resistance, Mando/BoBF, Bad Batch)
-- Full episode list with vitality, quality, and release date
-- Filter by season, vitality, quality, and custom tags
-- Tag filter panel is collapsible to save screen space
-- Add custom **tags** to episodes via the Edit button — tags are filterable but hidden from list view
-- Existing tags from other episodes are shown as quick-add pills in the Edit modal so tags stay consistent across episodes
-- Edit vitality, quality, release date, and notes per episode
-- Download the current episode data as JSON via the ↓ Download JSON button (then run `generate_data.py` to apply)
+## Data
 
-### Watchthroughs
-- Create named watchthroughs to track progress independently (e.g. "First Watch", "Rewatch 2026")
-- Check off items as you watch — the progress bar updates automatically
-- Each page (main list and all show pages) has its own independent watchthrough
-- Delete a watchthrough to reset its progress
-- Export your current filtered list as a plain `.txt` file (one title per line)
+When you edit content through the site (Edit button, tags, add/delete), those changes are saved to your browser's `localStorage` immediately, so they're there next time you open the page. `data.js` itself is untouched until you explicitly update it:
 
-### Export / Import
-- Export all watchthrough progress, custom order, hidden items, and tags as JSON from the ⇅ Export / Import button on the main page
-- Import that JSON on any device to restore your full state
-- Download `starwars_content.json` from the export panel to save any edits you've made to the main content list
+1. On the **Main List** page, click **↓ Download data.js**. This generates a complete, ready-to-use `data.js` — the main list plus every show's episodes, with every edit you've made anywhere on the site (including tags) already merged in.
+2. Replace the site's `data.js` with the downloaded file.
 
-## Updating Content
+Your watchthrough progress, watched status, and custom order are personal
+browser data, not in `data.js`
 
-Content is inlined into `data.js` for compatibility with local file browsing. To apply changes:
-
-1. Edit the relevant JSON file in `data/`
-2. Run:
-```
-python3 generate_data.py
-```
-1. Refresh the browser. Requires Python 3 
-
-Each show page also has a **↓ Download JSON** button in the nav bar that exports the current episode data (including any edits or tags you've added in the browser) back to JSON, ready to replace the file in `data/`.
-
-## File Structure
+## File structure
 
 ```
-starwars/
-├── index.html                      # Main content list
-├── cw.html                         # The Clone Wars episodes
-├── rebels.html                     # Star Wars Rebels episodes
-├── resistance.html                 # Star Wars Resistance episodes
-├── mando.html                      # The Mandalorian & BoBF episodes
-├── bad_batch.html                  # The Bad Batch episodes
-├── style.css
-├── app.js                          # Main list logic
-├── show_page.js                    # Shared engine for all show pages
-├── data.js                         # Auto-generated by generate_data.py — don't edit directly
-├── generate_data.py                # Run to regenerate data.js after JSON edits
-└── data/
-    ├── starwars_content.json       # Main content list
-    ├── clone_wars_episodes.json    # Clone Wars episode list
-    ├── rebels_episodes.json        # Rebels episode list
-    ├── resistance_episodes.json    # Resistance episode list
-    ├── mando_episodes.json         # Mandalorian & BoBF episode list
-    ├── bad_batch_episodes.json     # Bad Batch episode list
-    ├── project_info.json           # Title and subtitle
-    ├── watchthroughs.json          # Template (actual data in localStorage)
-    └── user_data.json              # Template (actual data in localStorage)
+index.html / cw.html / rebels.html / resistance.html / mando.html / bad_batch.html
+style.css
+data.js              — stores all content data
+js/
+├── utils.js          — stateless helpers (escaping, ids, sorting, downloads)
+├── storage.js         — localStorage wrapper + save indicator
+├── models.js           — Watchthrough / EntryCollection data models
+├── components.js        — shared UI: nav, modals, filters, tag editor
+├── base-app.js           — shared behavior for both apps below
+├── main-app.js             — controls index.html
+└── show-app.js               — controls every episode-list page
 ```
+
+`MainListApp` and `ShowPageApp` both extend `BaseWatchlistApp` and share the same components, so every page behaves the same way. All five show pages load the same `ShowPageApp`; each page just sets a `<title>` and a `--show-color`, and the app figures out which show's data to load from the page's filename.
+
+## Adding a new show page
+
+1. Add a new object to `data.js` shaped like `CW_DATA`, under a new `var` name (e.g. `NEW_SHOW_DATA`).
+2. Copy `cw.html` to a new filename; update its `<title>` and `--show-color`.
+3. Register the page in `Nav.PAGES` (`js/components.js`) and `ShowPageApp.PAGE_DATA_MAP` (`js/show-app.js`).

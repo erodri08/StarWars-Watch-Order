@@ -31,11 +31,6 @@ const MANDO_DATA = {json.dumps(mando, separators=(',', ':'))};
 const BAD_BATCH_DATA = {json.dumps(bb, separators=(',', ':'))};
 const PROJECT_INFO = {json.dumps(info, separators=(',', ':'))};
 
-// ─────────────────────────────────────────────────────────────────────────────
-// HOW TO UPDATE CONTENT:
-// 1. Edit any JSON file in data/
-// 2. Re-run: python3 generate_data.py
-// ─────────────────────────────────────────────────────────────────────────────
 """
 
 out_path = os.path.join(base, 'data.js')

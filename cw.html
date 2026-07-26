@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clone Wars — Star Wars Watchlist</title>
+<title>Loading… — Star Wars Watchlist Maker</title>
 <link rel="stylesheet" href="style.css">
 <style>
   :root { --show-color: #64B4FF; }
-  .header h1 { color: var(--show-color); text-shadow: 0 0 30px rgba(100,180,255,0.3); }
-  .nav-tab.active { border-color: var(--show-color); color: var(--show-color); background: rgba(100,180,255,0.1); }
+  .header h1 { color: var(--show-color); }
+  .nav-tab.active { border-color: var(--show-color); color: var(--show-color); background: color-mix(in srgb, var(--show-color) 10%, transparent); }
+  .progress-fill { background: var(--show-color) !important; }
 </style>
 </head>
 <body>
@@ -16,8 +17,8 @@
 <div class="app-wrapper">
 
   <div class="header">
-    <h1 id="showTitle">⬡ THE CLONE WARS ⬡</h1>
-    <p id="showYears" style="color:var(--sw-muted);font-size:15px;letter-spacing:2px;margin-top:4px;">2008–2020</p>
+    <h1 id="showTitle">⬡ LOADING ⬡</h1>
+    <p id="showYears" style="color:var(--sw-muted);font-size:15px;letter-spacing:2px;margin-top:4px;"></p>
   </div>
 
   <div class="nav-tabs" id="navTabs"></div>
@@ -25,64 +26,37 @@
   <div id="wtArea"></div>
   <div class="items-list" id="epList"></div>
 
+  <!-- Item Edit Modal -->
   <div class="modal-overlay" id="itemModal">
     <div class="modal">
-      <button class="modal-close" onclick="closeModal('itemModal')">✕</button>
+      <button class="modal-close" onclick="app.attemptCloseModal('itemModal')">✕</button>
       <div class="modal-title" id="itemModalTitle">Edit Episode</div>
-      <div id="itemModalBody"></div>
+      <div id="itemModalBody" oninput="app.markDirty()" onchange="app.markDirty()"></div>
     </div>
   </div>
+
+  <!-- Watchthrough Modal -->
   <div class="modal-overlay" id="wtModal">
     <div class="modal">
-      <button class="modal-close" onclick="closeModal('wtModal')">✕</button>
+      <button class="modal-close" onclick="app.closeModal('wtModal')">✕</button>
       <div class="modal-title">Watchthrough</div>
       <div id="wtModalBody"></div>
     </div>
   </div>
 
   <div class="save-indicator" id="saveIndicator">SAVED</div>
+
 </div>
 <script src="data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/models.js"></script>
+<script src="js/components.js"></script>
+<script src="js/base-app.js"></script>
+<script src="js/show-app.js"></script>
 <script>
-// Adapt CW_DATA to the show_page.js format
-window.SHOW_DATA = {
-  show: { id: 'clone_wars', title: 'The Clone Wars', color: '#64B4FF', years: '2008–2020' },
-  episodes: CW_DATA.episodes.map(ep => ({
-    id:           ep.id,
-    season:       ep.season,
-    episode:      ep.episode,
-    air_code:     ep.air_code,
-    title:        ep.title,
-    release_date: ep.release_date || undefined,
-    release_year: ep.release_year || undefined,
-    timeline_position: ep.timeline_position || undefined,
-    vitality:     ep.vitality,
-    quality:      ep.quality,
-    notes:        ep.notes || '',
-    tags:         ep.tags  || [],
-  })),
-};
+  window.app = new ShowPageApp();
+  app.init();
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const pages = [
-    {href:'index.html',      label:'◈ Main List'},
-    {href:'cw.html',         label:'◈ Clone Wars',   color:'#64B4FF'},
-    {href:'rebels.html',     label:'◈ Rebels',        color:'#E8A020'},
-    {href:'resistance.html', label:'◈ Resistance',    color:'#E8DFA0'},
-    {href:'mando.html',      label:'◈ Mando / BoBF',  color:'#8B7355'},
-    {href:'bad_batch.html',  label:'◈ Bad Batch',     color:'#C0392B'},
-  ];
-  const cur = location.pathname.split('/').pop() || 'index.html';
-  document.getElementById('navTabs').innerHTML =
-    pages.map(p => {
-      const active = p.href === cur;
-      const style  = p.color ? `--tab-color:${p.color}` : '';
-      return `<a class="nav-tab ${active?'active':''}" href="${p.href}" style="${style}">${p.label}</a>`;
-    }).join('') +
-    `<button class="btn" style="margin-left:auto" onclick="downloadJSON()">↓ Download JSON</button>`;
-});
-</script>
-<script src="show_page.js"></script>
 </body>
 </html>
